@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   const route = () => {
-    router.replace('/login')
+    router.push('/login')
   }
 
   return (

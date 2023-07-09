@@ -1,7 +1,13 @@
 import Button from "../elements/Button";
 
-const Alert = ({ validation, routes, message }: any) => {
-  const alert = () => {
+type Props = {
+  validation: boolean;
+  routes: () => void;
+  message: string;
+}
+
+const Alert = ({ validation, routes, message }: Props) => {
+  const handleAlert = () => {
     routes()
   }
 
@@ -19,16 +25,17 @@ const Alert = ({ validation, routes, message }: any) => {
     <>
       <div className={`z-50 w-screen absolute items-center h-screen top-0 left-0 bg-black opacity-80 ${validation === true ? 'flex' : 'hidden'}`}></div>
       <div className={`z-50 w-screen absolute flex items-center h-screen top-0 left-0 scale-0 ${validation === true && 'scale-100 transition delay-1000'}`}>
-        <div className="w-1/4 mx-auto bg-secondary rounded-lg my-auto mt-2">
+        {/* <div className="sm:w-1/4 w-1/2 mx-auto bg-secondary rounded-lg my-auto"> */}
+        <div className={validation === true ? "scale-100 transition delay-1000 sm:w-1/4 w-1/2 mx-auto bg-secondary rounded-lg -translate-y-full" : "scale-0"}>
         <div className="p-1">
-          <p className="text-sm break-words italic p-1 text-center my-5">{message}</p>
+          <p className="text-xs sm:text-sm break-words italic p-1 text-center my-5">{message}</p>
         </div>
-        <div className='flex flex-row justify-end mr-3'>
-          <Button onClick={alert}>
+        <div className='flex flex-row justify-end mr-3 mb-2'>
+            <Button onClick={handleAlert}>
             Ok
           </Button>
         </div>
-        <div className="bg-secondary rounded-lg flex flex-row justify-between">
+        <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex">
           <span className="text-base font-thin italic">
             #<span className="text-xs self-center font-thin">urgent</span>
           </span>
