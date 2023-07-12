@@ -1,20 +1,17 @@
 "use client";
 import LoginForm from "../components/templates/LoginForm";
 import Loading from "../components/fragments/Loading"
-// import Alert from "../components/fragments/Alert"
 import { useState } from "react";
-import axios from "axios"
+import {login} from "../services/auth-service"
 import { useRouter } from "next/navigation"
-// import LoadingSpin from '../components/templates/LoadingSpin';
+import {useStore} from "../context/store"
 
-const Login = () => {
+const LoginPage = () => {
+  const { loading, setLoading, message, setMessage} = useStore()
   const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
-  // const [alert, setAlert] = useState<boolean>(false)
-  const [message, setMessage] = useState<string>("")
   const [user, setUser] = useState<object>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (event: any) => {
@@ -23,22 +20,20 @@ const Login = () => {
   };
 
   const handleSubmit = (event: any) => {
-    event.preventDefault();
     setLoading(true)
-    axios
-    .post(`${process.env.NEXT_PUBLIC_API_URL}/authentications`, user)
-    .then((response) => {
-      console.log('response', response)
-      router.replace("/notes")
-    })
-    .catch((error) => {
-      console.log(error.response);
-      setLoading(false)
-      setMessage(error.response.data.message)
+    event.preventDefault();
+    login(user, (res: any) => {
+      if (res.status === "success") {
+        router.replace("/dashboard")
+        setLoading(false)
+      } else if (res.status === 400 || res.status === 401) {
+        setMessage(res.data.message)
+        setLoading(false)
+      }
+      console.log(res)
     })
 }
 
-// console.log('message===>', message)
 
   return (
     <>
@@ -54,4 +49,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

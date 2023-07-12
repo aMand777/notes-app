@@ -3,14 +3,13 @@ import SignupForm from "../components/templates/SignupForm"
 import Loading from "../components/fragments/Loading"
 import Alert from "../components/fragments/Alert"
 import { useState } from "react"
+import {insertUser} from "../services/user-service"
 import { useRouter } from "next/navigation"
-import axios from "axios"
+import {useStore} from "../context/store"
 
 const Signup = () => {
   const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
-  const [alert, setAlert] = useState<boolean>(false)
-  const [message, setMessage] = useState<string>("")
+  const { loading, setLoading, alert, setAlert, message, setMessage } = useStore()
   const [user, setUser] = useState<object>({
     username: "",
     email: "",
@@ -26,27 +25,23 @@ const Signup = () => {
   const handleSubmit = (event: any) => {
     setLoading(true)
     event.preventDefault()
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/users`, user)
-      .then((response) => {
-        // console.log('response', response)
-        setMessage(response.data.status)
-        setAlert(true)
-        // router.push("/login")
-      })
-      .catch((error) => {
-        console.log(error.response);
+    insertUser(user, (res: any) => {
+      if (res.status === "success") {
         setLoading(false)
-        setMessage(error.response.data.message)
-      })
+        setMessage(res.status)
+        setAlert(true)
+      } else if (res.status === 400 || res.status === 401) {
+        setMessage(res.data.message)
+        setLoading(false)
+      }
+      console.log(res)
+    })
   }
 
   const routes = () => {
     router.replace("/login")
   }
 
-  // console.log('message===>', message)
-  
   return (
     <>
       <Loading validation={loading} message={"Please Wait"} />

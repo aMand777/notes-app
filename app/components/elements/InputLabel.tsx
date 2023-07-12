@@ -13,7 +13,7 @@ const InputLabel = ({ children, htmlFor, className, inputRef, errorMessage, ...r
         <input ref={inputRef} {...rest} className={`text-sm italic p-1 w-full focus:outline-primary border-red-500 rounded ${className}`} />
       </div>
       <div className='w-full mx-auto'>
-      <p className="text-xs italic text-center text-red-700">{errorMessage}</p>
+      <p className="text-xs italic text-center text-red-700 focus:hidden">{errorMessage}</p>
       </div>
     </>
   );

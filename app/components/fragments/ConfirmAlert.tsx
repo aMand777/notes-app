@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Button from "../elements/Button"
 import { useStore } from "../../context/store"
 
@@ -7,13 +7,16 @@ type Props = {
   message: string;
 }
 
-const Alert = ({ validation, message }: Props) => {
-  const router = useRouter()
-  const { routes, setAlert } = useStore()
+const ConfirmAlert = ({ validation, message }: Props) => {
+  // const router = useRouter()
+  const { setConfirmAlert, setConfirm, confirm } = useStore()
 
-  const handleRoute = () => {
-    setAlert(false)
-    router.replace(`${routes}`)
+  const handleConfirm = () => {
+    setConfirm(!confirm)
+  }
+
+  const handleBack = () => {
+    setConfirmAlert(false)
   }
 
   const create = new Date().toLocaleString('id-ID', {
@@ -34,9 +37,12 @@ const Alert = ({ validation, message }: Props) => {
         <div className="p-1">
           <p className="text-xs break-words italic p-1 text-center my-5">{message}</p>
         </div>
-        <div className='flex flex-row justify-end mr-3 mb-2'>
-          <Button onClick={handleRoute}>
-            Ok
+        <div className='flex flex-row justify-between mx-3'>
+          <Button onClick={handleBack}>
+            Back
+          </Button>
+          <Button onClick={handleConfirm}>
+            Yes
           </Button>
         </div>
         <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex">
@@ -51,4 +57,4 @@ const Alert = ({ validation, message }: Props) => {
   );
 };
 
-export default Alert;
+export default ConfirmAlert;
