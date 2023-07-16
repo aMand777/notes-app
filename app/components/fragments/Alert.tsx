@@ -5,15 +5,16 @@ import { useStore } from "../../context/store"
 type Props = {
   validation: boolean;
   message: string;
+  routes: string;
 }
 
-const Alert = ({ validation, message }: Props) => {
+const Alert = ({ validation, message, routes }: Props) => {
   const router = useRouter()
-  const { routes, setAlert } = useStore()
+  const { dispatch } = useStore()
 
   const handleRoute = () => {
-    setAlert(false)
-    router.replace(`${routes}`)
+    dispatch({ type: "SET_DEFAULT" })
+    router.replace(routes)
   }
 
   const create = new Date().toLocaleString('id-ID', {

@@ -1,12 +1,11 @@
 "use client"
 import SideMenu from "../fragments/SideMenu";
 import { useStore } from "../../context/store"
-import SessionAlert from "../fragments/SessionAlert"
 import Alert from "../fragments/Alert"
 import ConfirmAlert from "../fragments/ConfirmAlert"
 
 const Nav = ({ children }: {children: React.ReactNode}) => {
-  const {sideMenu, alertSession, message, alert, confirmAlert} = useStore()
+  const {sideMenu, state} = useStore()
 
   return (
     <>
@@ -14,9 +13,8 @@ const Nav = ({ children }: {children: React.ReactNode}) => {
       {children}
       </nav>
       <SideMenu menu={sideMenu} />
-      <Alert validation={alert} message={message} />
-      <SessionAlert validation={alertSession} message={message} />
-      <ConfirmAlert validation={confirmAlert} message={"Are you sure ?"}/>
+      <Alert validation={ state.alert } routes={ state.routes } message={state.message} />
+      <ConfirmAlert validation={state.confirmAlert} message={state.message}/>
     </>
   );
 };

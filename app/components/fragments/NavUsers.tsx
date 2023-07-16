@@ -2,32 +2,35 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
 import {useStore} from "../../context/store"
-import { logout } from "../../services/auth-service"
-import { useRouter } from "next/navigation"
+import { useAuth } from "../../context/auth"
+import SessionAlert from "../fragments/SessionAlert"
+import { useUsers } from "@/app/context/users"
+import Cookies from "js-cookie"
 
 const NavUsers = () => {
-  const router = useRouter()
+  const token = Cookies.get("accessToken")
+  const {GetUserById} = useUsers()
+  const {Logout} = useAuth()
   const [urlImg, setUrlImg] = useState<string>("")
-  const { sideMenu, setSideMenu, setLoading } = useStore()
+  const [user, setUser] = useState<string>("")
+  const { sideMenu, setSideMenu, state } = useStore()
   
   const handleSideMenu = () => {
     setSideMenu(!sideMenu)
   }
   
   const handleLogout = () => {
-    setLoading(true)
-    logout((res: any) => {
-      if (res.status === "success") {
-        setLoading(false)
-        router.replace("/login")
-      } else if (res.status === 400) {
-        setLoading(false)
-      } else
-      console.log(res)
-    })
+    Logout()
   }
-
+  
+  
+  
   useEffect(() => {
+    if (token !== null || undefined) {
+      GetUserById((data: any) => {
+        setUser(data);
+      });
+    }
     setUrlImg("")
     // setUrlImg("/img/pic-risma.jpg")
   }, [])
@@ -37,25 +40,26 @@ const NavUsers = () => {
 
   return (
     <>
-    <div className="sm:hidden w-1/3 flex justify-end">
+    <SessionAlert validation={ state.alertSession } message={ state.message } />
+    <div className="flex justify-end w-1/3 sm:hidden">
     <button onClick={handleSideMenu} className="mr-5">
       <Image src="/img/menu-icon.png" alt="menu-icon" width="20" height="20" className={`cursor-pointer md:hidden ${sideMenu ? "hidden" : "block"}`} />
       <Image src="/img/close-icon.png" alt="close-icon" width="15" height="15" className={`cursor-pointer md:hidden ${sideMenu ? "block" : "hidden"}`} />
     </button>
     </div>
-    <div className="sm:flex justify-around w-1/3 hidden bg-slate-30 items-center">
+    <div className="items-center justify-around hidden w-1/3 sm:flex bg-slate-30">
       <div className="flex-auto">
-        <p className="w-fit text-xs font-medium ml-auto cursor-pointer">
-          <span className="hidden md:inline-block text-xs font-thin italic cursor-text mr-1">{`Selamat ${greeting},`}</span>
-          Risma Lusiana
+        <p className="ml-auto text-xs font-medium cursor-pointer w-fit">
+          <span className="hidden mr-1 text-xs italic font-thin md:inline-block cursor-text">{`Selamat ${greeting},`}</span>
+          {user}
         </p>
         </div>
-        <div className="w-7 h-7 rounded-full ml-2 bg-cover overflow-hidden relative bg-secondary">
+        <div className="relative ml-2 overflow-hidden bg-cover rounded-full w-7 h-7 bg-secondary">
           <Image src={(urlImg) || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
         </div>
-      <span className="lg:w-1/5 mx-1">
+      <span className="mx-1 lg:w-1/5">
         <button onClick={handleLogout}>
-          <p className="text-xs italic text-center mx-auto w-fit cursor-pointer text-blue-500 hover:text-blue-600 hover:font-semibold active:cursor-wait">Logout</p>
+          <p className="mx-auto text-xs italic text-center text-blue-500 cursor-pointer w-fit hover:text-blue-600 hover:font-semibold active:cursor-wait">Logout</p>
         </button>
       </span>
     </div>

@@ -1,32 +1,64 @@
 "use client"
-// import Cookies from "js-cookie"
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useReducer, useEffect } from 'react';
 
-export const Store = createContext<any>(false);
+const InitialState = {
+  alert: false,
+  alertSession: false,
+  confirmAlert: false,
+  confirm: false,
+  loading: false,
+  message: "",
+  routes: "",
+}
+
+const AlertReducer = (state: any, action: any) => {
+  switch (action.type) {
+    case "SET_ALERT":
+      return { ...state, alert: true, };
+    case "SET_ALERT_SESSION":
+      return { ...state, alertSession: true, };
+    case "SET_CONFIRM_ALERT":
+      return { ...state, confirmAlert: true, };
+    case "SET_CONFIRM":
+      return { ...state, confirm: true, };
+    case "SET_LOADING":
+      return { ...state, loading: true, };
+    case "SET_ROUTES":
+      return { ...state, routes: action.payload, };
+    case "SET_MESSAGE":
+      return { ...state, message: action.payload, };
+    case "SET_UPDATE_SESSION_SUCCESS" :
+      return {
+        ...state,
+        loading: false,
+        alertSession: false,
+      };
+    case "SET_UPDATE_SESSION_FAILED" :
+      return {
+        ...state,
+        loading: false,
+        alertSession: false,
+        alert: true,
+        routes: "/login",
+        message: "Gagal memperbarui sesi, silakan login kembali",
+      };
+    case "SET_DEFAULT":
+      return InitialState;
+    default:
+      break;
+  }
+}
+
+export const Store = createContext<any>(null);
 export const useStore = () => useContext(Store);
 
 
 export const StoreProvider = ({ children }: any) => {
-  // const accessToken = Cookies.get("accessToken")
-
+  const [state, dispatch] = useReducer(AlertReducer, InitialState)
   const [sideMenu, setSideMenu] = useState<boolean>(false)
-  const [alertSession, setAlertSession] = useState<boolean>(false)
-  const [message, setMessage] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false)
-  const [alert, setAlert] = useState<boolean>(false)
-  const [confirmAlert, setConfirmAlert] = useState<boolean>(false)
-  const [confirm, setConfirm] = useState<boolean>(false)
-  const [routes, setRoutes] = useState<string>("")
+  const [user, setUser] = useState<boolean>(false)
 
-  // console.log('loadingStore===>', loading)
-  // console.log('tokenStore===>', accessToken)
-  // console.log('alertSession===>', alertSession)
-  // console.log('alert===>', alert)
-  // console.log('confirm===>', confirm)
-
-  return <Store.Provider value={{
-    sideMenu, setSideMenu, alertSession, setAlertSession, message, setMessage, loading, setLoading, alert, setAlert, routes, setRoutes, confirmAlert, setConfirmAlert, confirm, setConfirm
-  }}>{children}</Store.Provider>;
+  return <Store.Provider value={{ state, dispatch, sideMenu, setSideMenu, user, setUser }}>{children}</Store.Provider>;
 };
 
 export default StoreProvider;

@@ -22,6 +22,8 @@ export const updateSession = (res: any) => {
     })
     .catch((error) => {
       res(error.response)
+      Cookies.remove("accessToken");
+      Cookies.remove("refreshToken");
   })
 }
 
@@ -39,6 +41,10 @@ export const logout = (res: any) => {
       Cookies.remove("refreshToken");
     })
     .catch((error) => {
+      if (error.response.status === 400) {
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
+      }
       res(error.response)
       console.log(error)
   })

@@ -1,34 +1,26 @@
 "use client"
 import NoteList from "../components/templates/NoteList"
 import CreateIcon from "../components/fragments/CreateIcon"
-import {useStore} from "../context/store"
+import { useStore } from "../context/store"
+import { useNotes } from "../context/notes"
 import { useEffect, useState } from "react"
-import { getNotes } from "../services/notes-service"
-import Cookies from "js-cookie"
-
-const token = Cookies.get("accessToken")
+import Loading from "../components/fragments/Loading"
 
 const NotesPage = () => {
   const [notes, setNotes] = useState<any[]>([])
-  const { setAlertSession, setMessage } = useStore()
+  const { state } = useStore()
+  const { GetNotes } = useNotes()
   
   useEffect(() => {
-    getNotes((res: any) => {
-      if (res.status === "success") {
-        setNotes(res.data.notes)
-      } else if (res.status === 401 || token === undefined) {
-        console.log(res)
-        setMessage("Sesi Anda telah habis, tetap login ?")
-        setAlertSession(true)
-      } else {
-        console.log(res)
-      }
+    GetNotes((data: any) => {
+      setNotes(data)
     })
     }, [])
   
   return (
     <>
-      <div className="w-9/12 md:w-7/12 lg:w-10/12 mx-auto flex flex-row flex-wrap justify-between">
+    <Loading validation={state.loading} />
+      <div className="flex flex-row flex-wrap justify-between w-9/12 mx-auto md:w-7/12 lg:w-10/12">
       {notes.map((note: any) => (
           <NoteList key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags} createdAt={note.createdAt} updatedAt={note.updatedAt} />
         ))}

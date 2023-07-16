@@ -2,13 +2,10 @@
 import LoginForm from "../components/templates/LoginForm";
 import Loading from "../components/fragments/Loading"
 import { useState } from "react";
-import {login} from "../services/auth-service"
-import { useRouter } from "next/navigation"
-import {useStore} from "../context/store"
+import { useAuth } from "../context/auth";
 
 const LoginPage = () => {
-  const { loading, setLoading, message, setMessage} = useStore()
-  const router = useRouter()
+  const { Login, authState } = useAuth()
   const [user, setUser] = useState<object>({
     email: "",
     password: "",
@@ -18,31 +15,20 @@ const LoginPage = () => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
-
+  
   const handleSubmit = (event: any) => {
-    setLoading(true)
     event.preventDefault();
-    login(user, (res: any) => {
-      if (res.status === "success") {
-        router.replace("/dashboard")
-        setLoading(false)
-      } else if (res.status === 400 || res.status === 401) {
-        setMessage(res.data.message)
-        setLoading(false)
-      }
-      console.log(res)
-    })
+    Login(user)
 }
 
 
   return (
     <>
-      <Loading validation={loading} message={"Please Wait"} />
-      {/* <Alert validation={alert} routes={() => setAlert(false)} message={message} /> */}
-      <div className="w-9/12 h-fit sm:w-1/3 sm:h-5/6 mx-auto bg-green-100 rounded-lg mt-24 my-auto">
-        <h1 className="text-lg text-center font-semibold italic pt-3">Login</h1>
+      <Loading validation={authState.loading} />
+      <div className="w-9/12 mx-auto my-auto mt-24 bg-green-100 rounded-lg h-fit sm:w-1/3 sm:h-5/6">
+        <h1 className="pt-3 text-lg italic font-semibold text-center">Login</h1>
         <form onSubmit={handleSubmit}>
-          <LoginForm onChange={handleChange} isError={message} />
+          <LoginForm onChange={handleChange} isError={authState.message} />
         </form>
       </div>
     </>

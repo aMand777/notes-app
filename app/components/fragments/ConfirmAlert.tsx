@@ -1,4 +1,3 @@
-// import { useRouter } from "next/navigation";
 import Button from "../elements/Button"
 import { useStore } from "../../context/store"
 
@@ -7,19 +6,18 @@ type Props = {
   message: string;
 }
 
-const ConfirmAlert = ({ validation, message }: Props) => {
-  // const router = useRouter()
-  const { setConfirmAlert, setConfirm, confirm } = useStore()
+const ConfirmAlert = ({ validation }: Props) => {
+  const { dispatch } = useStore()
 
   const handleConfirm = () => {
-    setConfirm(!confirm)
+    dispatch({type: "SET_CONFIRM"})
   }
 
   const handleBack = () => {
-    setConfirmAlert(false)
+    dispatch({type: "SET_DEFAULT"})
   }
 
-  const create = new Date().toLocaleString('id-ID', {
+  const date = new Date().toLocaleString('id-ID', {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
@@ -35,9 +33,9 @@ const ConfirmAlert = ({ validation, message }: Props) => {
       <div className={`z-50 w-screen absolute flex items-center h-screen top-0 left-0 scale-0 ${validation === true && 'scale-100 transition delay-1000'}`}>
         <div className={validation === true ? "scale-100 transition delay-1000 sm:w-1/4 w-1/2 mx-auto bg-secondary rounded-lg -translate-y-full" : "scale-0"}>
         <div className="p-1">
-          <p className="text-xs break-words italic p-1 text-center my-5">{message}</p>
+          <p className="p-1 my-5 text-xs italic text-center break-words">Apakah kamu yakin ?</p>
         </div>
-        <div className='flex flex-row justify-between mx-3'>
+        <div className='flex flex-row justify-between mx-3 mb-2'>
           <Button onClick={handleBack}>
             Back
           </Button>
@@ -45,11 +43,11 @@ const ConfirmAlert = ({ validation, message }: Props) => {
             Yes
           </Button>
         </div>
-        <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex">
-          <span className="text-base font-thin italic">
-            #<span className="text-xs self-center font-thin">urgent</span>
+        <div className="flex-row justify-between hidden rounded-lg bg-secondary sm:flex">
+          <span className="text-base italic font-thin">
+            #<span className="self-center text-xs font-thin">urgent</span>
           </span>
-          <span className="text-[11px] text-slate-700 italic self-center font-thin">{create}</span>
+          <span className="text-[11px] text-slate-700 italic self-center font-thin">{date}</span>
         </div>
       </div>
       </div>

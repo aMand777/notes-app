@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link"
 
 const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
   const create = new Date(createdAt).toLocaleString('id-ID', {
@@ -23,15 +23,15 @@ const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
 
   return (
     <>
-      <div className="mx-auto lg:mx-5 bg-secondary rounded-lg shadow-lg w-80 h-fit my-5 cursor-pointer hover:scale-105 ease-in-out delay-300">
+      <div className="mx-auto my-5 ease-in-out delay-300 rounded-lg shadow-lg cursor-pointer lg:mx-5 bg-secondary w-80 h-fit hover:scale-105">
         <Link href={`/notes/${id}`}>
           <div className="p-1">
-            <h3 className="font-bold text-xl mb-2 text-center">{title}</h3>
-            <p className="text-sm break-words pb-5 px-3">{body}</p>
+            <h3 className="mb-2 text-xl font-bold text-center">{title}</h3>
+            <p className="px-3 pb-5 text-sm break-words">{body}</p>
           </div>
-          <div className="bg-secondary rounded-lg flex flex-row justify-between">
+          <div className="flex flex-row justify-between rounded-lg bg-secondary">
             <span className="text-base italic font-medium">
-              #<span className="text-xs self-center">{tags[1]}</span>
+              #<span className="self-center text-xs">{tags}</span>
             </span>
             <span className="text-[11px] text-slate-700 italic font-medium self-center">{createdAt === updatedAt ? `createdAt  ${create}` : `updatedAt ${update}`}</span>
           </div>
@@ -41,4 +41,4 @@ const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
   );
 };
 
-export default NoteList;
+export default NoteList
