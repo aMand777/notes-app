@@ -56,9 +56,8 @@ export const useStore = () => useContext(Store);
 export const StoreProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(AlertReducer, InitialState)
   const [sideMenu, setSideMenu] = useState<boolean>(false)
-  const [user, setUser] = useState<boolean>(false)
 
-  return <Store.Provider value={{ state, dispatch, sideMenu, setSideMenu, user, setUser }}>{children}</Store.Provider>;
+  return <Store.Provider value={{ state, dispatch, sideMenu, setSideMenu }}>{children}</Store.Provider>;
 };
 
 export default StoreProvider;

@@ -12,9 +12,9 @@ const NotesProvider = ({ children }: any) => {
   const token = Cookies.get("accessToken")
   
   const GetNotes = (data: any) => {
+    dispatch({type: "SET_LOADING"})
 
     getNotes((res: any) => {
-      dispatch({type: "SET_LOADING"})
       if (res.status === "success") {
         data(res.data.notes)
         dispatch({type: "SET_DEFAULT"})
@@ -30,9 +30,9 @@ const NotesProvider = ({ children }: any) => {
   }
 
   const GetNoteById = (id: string, data: any) => {
+    dispatch({type: "SET_LOADING"})
 
     getNoteById(id, (res: any) => {
-      dispatch({type: "SET_LOADING"})
       if (res.status === "success") {
         data(res.data.note)
       dispatch({type: "SET_DEFAULT"})

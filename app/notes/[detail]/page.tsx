@@ -1,15 +1,13 @@
 "use client"
 import DetailNotes from "../../components/templates/DetailNotes"
 import LoadingDetail from "../../components/templates/LoadingDetail"
-import {getNoteById, deleteNote} from "../../services/notes-service"
 import { useState, useEffect } from "react"
 import {useStore} from "../../context/store"
 import { useRouter } from "next/navigation"
 import { useNotes } from "@/app/context/notes"
 
 const DetailNotePage = ({ params }: { params: { detail: string } }) => {
-  const router = useRouter()
-  const { confirm, setConfirm, setConfirmAlert, setAlert, setMessage, setRoutes, state, dispatch } = useStore()
+  const { state } = useStore()
   const {GetNoteById, DeleteNote} = useNotes()
   const [note, setNote] = useState<any>()
   const id = params.detail;

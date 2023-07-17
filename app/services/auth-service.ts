@@ -1,9 +1,13 @@
 import axios from "axios";
 import Cookies from "js-cookie"
+import jwt from "jsonwebtoken"
 
-export const login = (user: object, res: any) => {
+export const login = (user: {email: string, password: string}, res: any) => {
   axios.post(`${process.env.NEXT_PUBLIC_API_URL}/authentications`, user)
     .then((response) => {
+      const payload: any = jwt.decode(response.data.data.accessToken)
+      const {id}: any = payload
+      Cookies.set("userId", id)
       Cookies.set("accessToken", response.data.data.accessToken);
       Cookies.set("refreshToken", response.data.data.refreshToken);
       res(response.data)
@@ -39,6 +43,7 @@ export const logout = (res: any) => {
       res(response.data)
       Cookies.remove("accessToken");
       Cookies.remove("refreshToken");
+      Cookies.remove("userId");
     })
     .catch((error) => {
       if (error.response.status === 400) {

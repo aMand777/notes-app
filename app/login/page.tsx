@@ -25,7 +25,7 @@ const LoginPage = () => {
   return (
     <>
       <Loading validation={authState.loading} />
-      <div className="w-9/12 mx-auto my-auto mt-24 bg-green-100 rounded-lg h-fit sm:w-1/3 sm:h-5/6">
+      <div className="w-9/12 md:w-5/12 mx-auto my-auto mt-24 bg-green-100 rounded-lg h-fit sm:w-1/3 sm:h-5/6 max-w-md">
         <h1 className="pt-3 text-lg italic font-semibold text-center">Login</h1>
         <form onSubmit={handleSubmit}>
           <LoginForm onChange={handleChange} isError={authState.message} />

@@ -1,14 +1,12 @@
 "use client"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import {useStore} from "../../context/store"
 import { useAuth } from "../../context/auth"
 import SessionAlert from "../fragments/SessionAlert"
 import { useUsers } from "@/app/context/users"
-import Cookies from "js-cookie"
 
 const NavUsers = () => {
-  const token = Cookies.get("accessToken")
   const {GetUserById} = useUsers()
   const {Logout} = useAuth()
   const [urlImg, setUrlImg] = useState<string>("")
@@ -23,14 +21,11 @@ const NavUsers = () => {
     Logout()
   }
   
-  
-  
   useEffect(() => {
-    if (token !== null || undefined) {
-      GetUserById((data: any) => {
-        setUser(data);
-      });
-    }
+    GetUserById((data: any) => {
+      setUser(data);
+    });
+
     setUrlImg("")
     // setUrlImg("/img/pic-risma.jpg")
   }, [])

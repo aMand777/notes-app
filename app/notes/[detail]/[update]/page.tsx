@@ -13,7 +13,7 @@ const UpdatePage = ({ params }: { params: { update: string } }) => {
   const id = params.update
   
   const { EditNoteById } = useNotes()
-  const [note, setNote] = useState<any>({title, body, tags });
+  const [note, setNote] = useState<any>({title, body, tags: [tags] });
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;

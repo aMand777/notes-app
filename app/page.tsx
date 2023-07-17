@@ -9,11 +9,10 @@ import InputLabel from "./components/elements/InputLabel"
 import Nav from "./components/elements/Nav"
 import NavLogo from "./components/fragments/NavLogo"
 import NavBrand from "./components/fragments/NavBrand"
-import Alert from "./components/fragments/Alert"
 import {useStore} from "./context/store"
 
 const Home = () => {
-  const {state, dispatch} = useStore()
+  const { dispatch } = useStore()
 
   const [sampleNotes, setSampleNotes] = useState<string>('');
   const focusInput = useRef<HTMLInputElement>(null);
@@ -55,7 +54,6 @@ const Home = () => {
         <NavLogo />
         <NavBrand link="/" />
       </Nav>
-      {/* <Alert validation={state.alert} message={state.message} routes={state.routes} /> */}
       <div className="w-9/12 py-5 mx-auto mt-3 bg-green-100 rounded-lg sm:w-1/3 sm:mt-5">
         <div className="pt-3 text-lg italic font-semibold text-center">
           <h1>Welcome to NotesApp</h1>

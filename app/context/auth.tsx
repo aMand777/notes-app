@@ -3,8 +3,6 @@ import { useReducer, useContext, createContext } from "react";
 import { login, updateSession, logout } from "../services/auth-service"
 import { useRouter } from "next/navigation"
 import { useStore } from "./store"
-import jwt from "jsonwebtoken"
-
 
 const InitialAuthState = {
   message: "",
@@ -43,16 +41,15 @@ export const Authentications = createContext<any>(null)
 export const useAuth = () => useContext(Authentications)
 
 const AuthProvider = ({ children }: any) => {
-  const { dispatch, setUser } = useStore()
+  const { dispatch } = useStore()
   const router = useRouter()
   const [authState, authDispatch] = useReducer(AuthReducer, InitialAuthState);
 
-  const Login = (user: object) => {
+  const Login = (user: {email : string, password: string}) => {
 
     authDispatch({ type: AuthActions.SET_LOADING })
     login(user, (res: any) => {
       if (res.status === "success") {
-      setUser(jwt.decode(res.data.accessToken))
         router.replace("/dashboard")
         authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
       } else if (res.status === 400 || res.status === 401) {

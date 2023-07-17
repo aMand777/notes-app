@@ -1,6 +1,9 @@
 import Link from "next/link"
+import Loading from "../fragments/Loading"
+import { useState } from "react";
 
 const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
+  const [loading, setLoading] = useState<boolean>(false)
   const create = new Date(createdAt).toLocaleString('id-ID', {
     day: '2-digit',
     month: 'short',
@@ -21,13 +24,16 @@ const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
     hour12: false,
   });
 
+
   return (
     <>
-      <div className="mx-auto my-5 ease-in-out delay-300 rounded-lg shadow-lg cursor-pointer lg:mx-5 bg-secondary w-80 h-fit hover:scale-105">
+      <Loading validation={loading} />
+      <button onClick={() => setLoading(true)} >
+      <div className="mx-auto my-5 ease-in-out delay-300 rounded-lg shadow-lg cursor-pointer lg:mx-5 bg-secondary w-80 hover:scale-105">
         <Link href={`/notes/${id}`}>
-          <div className="p-1">
+          <div className="p-1 h-40">
             <h3 className="mb-2 text-xl font-bold text-center">{title}</h3>
-            <p className="px-3 pb-5 text-sm break-words">{body}</p>
+            <p className="text-start px-3 pt-2 pb-5 text-sm break-words">{body.substring(0, 150)}</p>
           </div>
           <div className="flex flex-row justify-between rounded-lg bg-secondary">
             <span className="text-base italic font-medium">
@@ -37,6 +43,7 @@ const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
           </div>
         </Link>
       </div>
+      </button>
     </>
   );
 };

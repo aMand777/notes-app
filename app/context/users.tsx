@@ -1,9 +1,7 @@
 "use client"
 import { insertUser, getUserById } from "../services/users-service"; 
 import { useReducer, useContext, createContext, useState } from "react";
-import { useRouter } from "next/navigation"
 import { useStore } from "./store"
-import jwt from "jsonwebtoken"
 import Cookies from "js-cookie"
 
 const InitialUsersState = {
@@ -59,9 +57,7 @@ export const Users = createContext<any>(null)
 export const useUsers = () => useContext(Users)
 
 const UsersProvider = ({ children }: any) => {
-  // const [user, setUser] = useState<any>(null)
-  const {state, dispatch, user} = useStore()
-  const router = useRouter()
+  const { dispatch } = useStore()
   const [usersState, usersDispatch] = useReducer(UsersReducer, InitialUsersState);
 
   const InsertUser = (user: object) => {
@@ -85,19 +81,11 @@ const UsersProvider = ({ children }: any) => {
   }
 
   const GetUserById = (data: any) => {
-    
-    // const token = Cookies.get("accessToken")
-    // const decoded: string | jwt.JwtPayload | null = jwt.decode(`${token}`)
-    // if (decoded !== null) {
-    //   setUser(decoded)
-    //   console.log(decoded);
-    // } else {
-    //   console.error('Token is not valid or has expired.');
-    // }
 
-    getUserById(user.id, (res: any) => {
+    const id: any = Cookies.get("userId")
+
+    getUserById(id, (res: any) => {
       if (res.status === "success") {
-        console.log(res)
         data(res.data.user.username)
         usersDispatch({
           type: UsersActions.SET_GET_USER_BT_ID_SUCCESS,
