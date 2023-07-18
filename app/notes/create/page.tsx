@@ -5,7 +5,7 @@ import { useNotes } from "@/app/context/notes"
 import {useStore} from "@/app/context/store"
 
 const CreatePage = () => {
-  const {dispatch, state} = useStore()
+  const {dispatch} = useStore()
   const {InsertNote} = useNotes()
   const [note, setNote] = useState({
     title: "",
@@ -17,9 +17,9 @@ const CreatePage = () => {
     const { name, value } = event.target;
     setNote({ ...note, [name]: value });
     
-    if (note.title.length === 19) {
+    if (note.title.length === 49) {
       dispatch({type : "SET_ALERT"})
-      dispatch({type : "SET_MESSAGE", payload: "title maksimal 20 karakter"})
+      dispatch({type : "SET_MESSAGE", payload: "title maksimal 50 karakter"})
     }
   };
 

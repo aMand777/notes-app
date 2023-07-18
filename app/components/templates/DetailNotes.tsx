@@ -43,8 +43,8 @@ const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
       <Loading validation={loading} />
       <div className="w-10/12 mx-auto my-5 sm:w-7/12 md:w-1/2 lg:w-1/2 h-fit">
           <div className="w-full max-w-sm px-4 mx-auto border border-b-0 shadow bg-secondary rounded-t-md border-primary">
-            <h3 className="text-xl font-bold text-center">{title}</h3>
-            <p className="pt-3 pb-10 mx-1 text-sm italic break-words">{body}</p>
+            <h3 className="text-xl font-bold text-center my-2">{title}</h3>
+            <p className="pt-3 pb-10 mx-1 text-sm italic break-words whitespace-break-spaces">{body}</p>
           </div>
           <div className="flex flex-row justify-between w-full max-w-sm mx-auto border border-t-0 bg-secondary rounded-b-md border-primary">
             <p className="pl-2 text-xs italic">

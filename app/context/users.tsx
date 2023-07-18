@@ -5,48 +5,21 @@ import { useStore } from "./store"
 import Cookies from "js-cookie"
 
 const InitialUsersState = {
-  alert: false,
-  alertSession: false,
   loading: false,
-  message: "",
-  routes: "",
-  user: {},
+  message: ""
 };
-
-const UsersActions = {
-  SET_LOADING: 'SET_LOADING',
-  SET_INSERT_USERS_SUCCESS: 'SET_INSERT_USERS_SUCCESS',
-  SET_INSERT_USERS_FAILED: 'SET_INSERT_USERS_FAILED',
-  SET_GET_USERS_SUCCESS: 'SET_GET_USERS_SUCCESS',
-  SET_GET_USERS_FAILED: 'SET_GET_USERS_FAILED',
-  SET_GET_USER_BT_ID_SUCCESS: 'SET_GET_USER_BT_ID_SUCCESS',
-  SET_GET_USER_BT_ID_FAILED: 'SET_GET_USER_BT_ID_FAILED',
-  SET_DEFAULT: 'SET_DEFAULT',
-};
-
 
 const UsersReducer = (state: any, action: any) => {
   switch (action.type) {
-    case UsersActions.SET_LOADING:
+    case "SET_LOADING" :
       return { ...state, loading: true };
-    case UsersActions.SET_INSERT_USERS_SUCCESS:
-      return {
-        loading: false,
-        message: action.payload,
-        routes: "/login",
-      };
-    case UsersActions.SET_INSERT_USERS_FAILED:
+    case "SET_INSERT_USERS_FAILED" :
       return {
         ...state,
         loading: false,
         message: action.payload,
       };
-    case UsersActions.SET_GET_USER_BT_ID_SUCCESS :
-      return {
-        ...state,
-        user: action.payload
-      };
-    case UsersActions.SET_DEFAULT:
+    case "SET_DEFAULT" :
       return InitialUsersState;
     default:
       break;
@@ -61,22 +34,20 @@ const UsersProvider = ({ children }: any) => {
   const [usersState, usersDispatch] = useReducer(UsersReducer, InitialUsersState);
 
   const InsertUser = (user: object) => {
+    usersDispatch({ type: "SET_LOADING" })
 
-    usersDispatch({ type: UsersActions.SET_LOADING })
     insertUser(user, (res: any) => {
       if (res.status === "success") {
-        usersDispatch({
-          type: UsersActions.SET_INSERT_USERS_SUCCESS,
-          payload: res.status
-        })
+        usersDispatch({ type: "SET_DEFAULT"})
         dispatch({type: "SET_ALERT"})
+        dispatch({type: "SET_MESSAGE", payload: `${res.status}, please login`})
+        dispatch({type: "SET_ROUTES", payload: "/login"})
       } else if (res.status === 400 || res.status === 401) {
-        usersDispatch({
-          type: UsersActions.SET_INSERT_USERS_FAILED,
-          payload: res.data.message
-        })
+        usersDispatch({ type: "SET_INSERT_USERS_FAILED", payload: res.data.message })
+      } else {
+        usersDispatch({ type: "SET_DEFAULT"})
+        console.log(res)
       }
-      console.log(res)
     })
   }
 
@@ -87,10 +58,6 @@ const UsersProvider = ({ children }: any) => {
     getUserById(id, (res: any) => {
       if (res.status === "success") {
         data(res.data.user.username)
-        usersDispatch({
-          type: UsersActions.SET_GET_USER_BT_ID_SUCCESS,
-          payload: res.data.user
-        })
       } else {
         console.log(res)
       }

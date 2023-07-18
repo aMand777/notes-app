@@ -21,7 +21,6 @@ const LoginPage = () => {
     Login(user)
 }
 
-
   return (
     <>
       <Loading validation={authState.loading} />

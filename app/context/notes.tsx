@@ -52,8 +52,9 @@ const NotesProvider = ({ children }: any) => {
   }
 
   const DeleteNote = (id: string) => {
-
+    
     deleteNote(id, (res: any) => {
+      dispatch({type: "SET_LOADING"})
       if (res.status === "success") {
         console.log(res)
         dispatch({ type: "SET_DEFAULT" })

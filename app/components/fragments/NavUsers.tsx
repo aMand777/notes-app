@@ -5,10 +5,11 @@ import {useStore} from "../../context/store"
 import { useAuth } from "../../context/auth"
 import SessionAlert from "../fragments/SessionAlert"
 import { useUsers } from "@/app/context/users"
+import Loading from "../fragments/Loading"
 
 const NavUsers = () => {
   const {GetUserById} = useUsers()
-  const {Logout} = useAuth()
+  const {Logout, authState} = useAuth()
   const [urlImg, setUrlImg] = useState<string>("")
   const [user, setUser] = useState<string>("")
   const { sideMenu, setSideMenu, state } = useStore()
@@ -35,6 +36,7 @@ const NavUsers = () => {
 
   return (
     <>
+    <Loading validation={authState.loading} />
     <SessionAlert validation={ state.alertSession } message={ state.message } />
     <div className="flex justify-end w-1/3 sm:hidden">
     <button onClick={handleSideMenu} className="mr-5">

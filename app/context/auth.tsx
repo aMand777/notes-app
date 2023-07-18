@@ -46,12 +46,12 @@ const AuthProvider = ({ children }: any) => {
   const [authState, authDispatch] = useReducer(AuthReducer, InitialAuthState);
 
   const Login = (user: {email : string, password: string}) => {
-
     authDispatch({ type: AuthActions.SET_LOADING })
+
     login(user, (res: any) => {
       if (res.status === "success") {
-        router.replace("/dashboard")
         authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
+        router.replace("/dashboard")
       } else if (res.status === 400 || res.status === 401) {
         authDispatch({ type: AuthActions.SET_LOGIN_FAILED, payload: res.data.message })
       }
@@ -75,8 +75,8 @@ const AuthProvider = ({ children }: any) => {
   }
 
   const Logout = () => {
-
     authDispatch({ type: AuthActions.SET_LOADING })
+
     logout((res: any) => {
         authDispatch({ type: AuthActions.SET_LOGOUT })
         router.replace("/login")
