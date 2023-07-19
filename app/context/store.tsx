@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useContext, useState, useReducer, useEffect } from 'react';
+import { createContext, useContext, useState, useReducer } from 'react';
 
 const InitialState = {
   alert: false,

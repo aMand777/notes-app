@@ -7,7 +7,7 @@ import UsersProvider from "./context/users"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Home Page",
+  title: "NotesApp | Home Page",
   description: "Notes App Home Page",
 }
 

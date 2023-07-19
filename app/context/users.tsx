@@ -1,6 +1,6 @@
 "use client"
 import { insertUser, getUserById } from "../services/users-service"; 
-import { useReducer, useContext, createContext, useState } from "react";
+import { useReducer, useContext, createContext } from "react";
 import { useStore } from "./store"
 import Cookies from "js-cookie"
 

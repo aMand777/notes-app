@@ -1,6 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import SampleNotes from "./components/templates/SampleNotes"
@@ -16,18 +15,6 @@ const Home = () => {
 
   const [sampleNotes, setSampleNotes] = useState<string>('');
   const focusInput = useRef<HTMLInputElement>(null);
-
-  //================>
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
-  useEffect(() => {
-    const url = `${pathname}?${searchParams}`
-    console.log("url===>", url)
-    // You can now use the current URL
-    // ...
-  }, [pathname, searchParams])
-  //========================<
 
   useEffect(() => {
     if (focusInput.current) {

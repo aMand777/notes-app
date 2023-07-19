@@ -1,8 +1,8 @@
 "use client";
-import LoginForm from "../components/templates/LoginForm";
+import LoginForm from "../components/templates/LoginForm"
 import Loading from "../components/fragments/Loading"
-import { useState } from "react";
-import { useAuth } from "../context/auth";
+import { useState } from "react"
+import { useAuth } from "../context/auth"
 
 const LoginPage = () => {
   const { Login, authState } = useAuth()

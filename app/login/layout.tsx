@@ -1,17 +1,17 @@
-import Nav from '../components/elements/Nav'
-import NavLogo from '../components/fragments/NavLogo'
-import NavBrand from '../components/fragments/NavBrand'
+import Nav from "../components/elements/Nav"
+import NavLogo from "../components/fragments/NavLogo"
+import NavBrand from "../components/fragments/NavBrand"
 
 export const metadata = {
-  title: 'NotesApp | Login',
-  description: 'Notes App Signup Page',
+  title: "NotesApp | Login",
+  description: "Notes App Login Page",
 }
 
 const LayoutLogin = ({ children }: any) => {
   return (
     <>
       <Nav>
-        <NavLogo link="/" />
+        <NavLogo />
         <NavBrand link="/" />
       </Nav>
       {children}

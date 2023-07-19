@@ -3,7 +3,6 @@ import DetailNotes from "../../components/templates/DetailNotes"
 import LoadingDetail from "../../components/templates/LoadingDetail"
 import { useState, useEffect } from "react"
 import {useStore} from "../../context/store"
-import { useRouter } from "next/navigation"
 import { useNotes } from "@/app/context/notes"
 
 const DetailNotePage = ({ params }: { params: { detail: string } }) => {
