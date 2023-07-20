@@ -64,7 +64,7 @@ const AuthProvider = ({ children }: any) => {
     dispatch({ type: AuthActions.SET_LOADING })
     updateSession((res: any) => {
       if (res.status === "success") {
-        router.replace("/dashboard")
+        router.push("/dashboard")
         dispatch({ type: "SET_UPDATE_SESSION_SUCCESS" })
       } else if (res.status === 400) {
         dispatch({ type: "SET_UPDATE_SESSION_FAILED" })

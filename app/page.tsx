@@ -8,7 +8,8 @@ import InputLabel from "./components/elements/InputLabel"
 import Nav from "./components/elements/Nav"
 import NavLogo from "./components/fragments/NavLogo"
 import NavBrand from "./components/fragments/NavBrand"
-import {useStore} from "./context/store"
+import { useStore } from "./context/store"
+import UploadImage from "./components/fragments/UploadImage"
 
 const Home = () => {
   const { dispatch } = useStore()

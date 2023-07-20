@@ -1,5 +1,5 @@
 "use client"
-import { insertUser, getUserById } from "../services/users-service"; 
+import { insertUser, uploadImage } from "../services/users-service"; 
 import { useReducer, useContext, createContext } from "react";
 import { useStore } from "./store"
 import Cookies from "js-cookie"
@@ -51,20 +51,31 @@ const UsersProvider = ({ children }: any) => {
     })
   }
 
-  const GetUserById = (data: any) => {
+  const UploadImageUser = (file: any) => {
+    const token = Cookies.get("accessToken")
+    usersDispatch({ type: "SET_LOADING" })
 
-    const id: any = Cookies.get("userId")
-
-    getUserById(id, (res: any) => {
+    uploadImage(file, (res: any) => {
       if (res.status === "success") {
-        data(res.data.user.username)
+        console.log(res)
+        usersDispatch({ type: "SET_DEFAULT"})
+        dispatch({type: "SET_ALERT"})
+        dispatch({type: "SET_MESSAGE", payload: `${res.status}`})
+        dispatch({type: "SET_ROUTES", payload: "/dashboard"})
+      } else if (res.status === 413) {
+        dispatch({type: "SET_ALERT"})
+        dispatch({type: "SET_MESSAGE", payload: "Ukuran file maksimal 100kb"})
+      } else if (res.status === 401 || token === undefined) {
+        console.log(res)
+        dispatch({type: "SET_ALERT_SESSION"})
+        dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else {
         console.log(res)
       }
     })
   }
 
-  return <Users.Provider value= { { usersState, usersDispatch, InsertUser, GetUserById} }> { children } </Users.Provider>
+  return <Users.Provider value= { { usersState, usersDispatch, InsertUser, UploadImageUser} }> { children } </Users.Provider>
 }
 
 export default UsersProvider;

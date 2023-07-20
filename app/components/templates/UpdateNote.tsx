@@ -17,8 +17,10 @@ const CreateNotes = ({ id, title, body, tags, handleChange, handleSelect }: any)
 
   return (
     <>
-      <div className="mx-auto sm:w-11/12 md:w-10/12">
-        <div className="w-8/12 mx-auto my-5 rounded-lg shadow-2xl bg-secondary sm:w-7/12 md:w-5/12 h-fit">
+      {/* <div className="mx-auto sm:w-11/12 md:w-10/12">
+        <div className="w-8/12 mx-auto my-5 rounded-lg shadow-2xl bg-secondary sm:w-7/12 md:w-5/12 h-fit"> */}
+      <div className="w-screen max-w-md mx-auto sm:w-11/12 lg:w-10/12">
+        <div className="w-8/12 max-w-md mx-auto my-5 rounded-lg shadow-2xl bg-secondary sm:w-2/3 h-fit">
           <div className="p-1 ">
             <p className="text-center border border-white rounded-lg">
               <InputLabel
@@ -43,7 +45,7 @@ const CreateNotes = ({ id, title, body, tags, handleChange, handleSelect }: any)
             <p className="self-center text-xs italic text-slate-700"></p>
           </div>
         </div>
-        <div className="flex flex-row justify-between w-8/12 mx-auto sm:w-7/12 md:w-5/12">
+        <div className="flex flex-row justify-between w-8/12 mx-auto sm:w-2/3">
           <Link href={`/notes/${id}`}>
             <Button>Back</Button>
           </Link>

@@ -20,15 +20,17 @@ const NotesPage = () => {
   
   return (
     <>
-      <NotesLoading validation={state.loading} loop={9} />
+      <NotesEmpty validation={notes.length === 0 && !state.loading} />
       {notes.length > 0 ? (
-      <div className="flex flex-row flex-wrap justify-between w-9/12 mx-auto md:w-7/12 lg:w-10/12">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mx-auto container">
       {notes.map((note: any) => (
         <NoteList key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags} createdAt={note.createdAt} updatedAt={note.updatedAt} />
         ))}
       </div>
-      ) : <NotesEmpty /> }
-        <CreateIcon />
+      ) : 
+      <NotesLoading validation={state.loading} loop={9} /> 
+      }
+      <CreateIcon />
     </>
   )
 }

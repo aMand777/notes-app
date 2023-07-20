@@ -1,16 +1,18 @@
 "use client"
 import Image from "next/image"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import {useStore} from "../../context/store"
 import { useAuth } from "../../context/auth"
 import SessionAlert from "../fragments/SessionAlert"
-import { useUsers } from "@/app/context/users"
 import Loading from "../fragments/Loading"
+import { useRouter } from "next/navigation"
+import { getUser } from "../../services/users-service"
 
 const NavUsers = () => {
-  const {GetUserById} = useUsers()
+  const router = useRouter()
   const {Logout, authState} = useAuth()
   const [urlImg, setUrlImg] = useState<string>("")
+  const [fileName, setFileName] = useState<string>("")
   const [user, setUser] = useState<string>("")
   const { sideMenu, setSideMenu, state } = useStore()
   
@@ -21,15 +23,15 @@ const NavUsers = () => {
   const handleLogout = () => {
     Logout()
   }
-  
-  useEffect(() => {
-    GetUserById((data: any) => {
-      setUser(data);
-    });
 
-    setUrlImg("")
-    // setUrlImg("/img/pic-risma.jpg")
-  }, [])
+  useEffect(() => {
+    getUser((res: any) => {
+      setUser(res.username)
+      setFileName(res.image)
+      setUrlImg(`${process.env.NEXT_PUBLIC_API_URL}/upload/images/${res.image}`)
+    })
+  })
+  
 
   const time = new Date().getHours();
   const greeting = time < 12 ? 'pagi' : time < 15 ? 'siang' : time < 18 ? 'sore' : 'malam';
@@ -46,13 +48,15 @@ const NavUsers = () => {
     </div>
     <div className="items-center justify-around hidden w-1/3 sm:flex bg-slate-30">
       <div className="flex-auto">
-        <p className="ml-auto text-xs font-medium cursor-pointer w-fit">
+        <p className="ml-auto text-xs font-medium w-fit">
           <span className="hidden mr-1 text-xs italic font-thin md:inline-block cursor-text">{`Selamat ${greeting},`}</span>
           {user}
         </p>
         </div>
         <div className="relative ml-2 overflow-hidden bg-cover rounded-full w-7 h-7 bg-secondary">
-          <Image src={(urlImg) || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
+          <button onClick={() => router.push("/dashboard/profile")}>
+          <Image src={fileName !== null ? urlImg : "/img/girls-icon.svg"} alt="pic-icon" fill={true} />
+          </button>
         </div>
       <span className="mx-1 lg:w-1/5">
         <button onClick={handleLogout}>
