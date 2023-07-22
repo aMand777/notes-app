@@ -29,8 +29,8 @@ const Alert = ({ validation, message, routes }: Props) => {
 
   return (
     <>
-      <div className={`z-50 w-screen absolute items-center h-screen top-0 left-0 bg-black opacity-80 ${validation === true ? 'flex' : 'hidden'}`}></div>
-      <div className={`z-50 w-screen absolute flex items-center h-screen top-0 left-0 scale-0 ${validation === true && 'scale-100 transition delay-1000'}`}>
+      <div className={`z-50 w-screen fixed items-center h-screen inset-0 left-0 bg-black opacity-80 ${validation === true ? 'flex' : 'hidden'}`}></div>
+      <div className={`z-50 w-screen fixed flex items-center h-screen inset-0 left-0 scale-0 ${validation === true && 'scale-100 transition delay-1000'}`}>
         <div className={validation === true ? "scale-100 transition delay-500 md:w-1/4 sm:w-1/3 w-1/2 max-w-md mx-auto bg-secondary rounded-lg -translate-y-full" : "scale-0"}>
         <div className="p-1">
           <p className="text-xs break-words italic p-1 text-center my-5">{message}</p>

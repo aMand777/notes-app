@@ -9,7 +9,6 @@ import Nav from "./components/elements/Nav"
 import NavLogo from "./components/fragments/NavLogo"
 import NavBrand from "./components/fragments/NavBrand"
 import { useStore } from "./context/store"
-import UploadImage from "./components/fragments/UploadImage"
 
 const Home = () => {
   const { dispatch } = useStore()
@@ -42,16 +41,16 @@ const Home = () => {
         <NavLogo />
         <NavBrand link="/" />
       </Nav>
-      <div className="w-9/12 py-5 mx-auto mt-3 bg-green-100 rounded-lg sm:w-1/3 sm:mt-5">
-        <div className="pt-3 text-lg italic font-semibold text-center">
+      <div className="w-9/12 py-2 mx-auto mt-3 bg-green-100 rounded-lg sm:w-1/3 max-w-sm sm:mt-5">
+        <div className="text-sm sm:text-md italic font-semibold text-center">
           <h1>Welcome to NotesApp</h1>
-          <div className="relative w-32 h-32 mx-auto my-5">
+          <div className="relative w-16 h-16 sm:w-32 sm:h-32 mx-auto my-5">
             <Image src="/img/logo.ico" alt="logo" fill={true} />
           </div>
-          <div className="w-9/12 mx-auto sm:w-1/3">
+          <div className="w-9/12 mx-auto">
             <InputLabel inputRef={focusInput} placeholder="catatan hari ini.." onChange={handleChange} onKeyDown={handleKeyDown} className="mb-2 text-xs italic" />
           </div>
-          <div className="flex flex-roe justify-evenly">
+          <div className="flex flex-row justify-between mx-5 md:mx-10">
             <Link href="/login">
               <Button>Log in</Button>
             </Link>

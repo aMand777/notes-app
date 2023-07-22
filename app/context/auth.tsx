@@ -50,8 +50,8 @@ const AuthProvider = ({ children }: any) => {
 
     login(user, (res: any) => {
       if (res.status === "success") {
-        authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
         router.replace("/dashboard")
+        authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
       } else if (res.status === 400 || res.status === 401) {
         authDispatch({ type: AuthActions.SET_LOGIN_FAILED, payload: res.data.message })
       }
