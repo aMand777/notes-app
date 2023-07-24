@@ -11,7 +11,6 @@ import Link from "next/link"
 const NavUsers = () => {
   const {Logout, authState} = useAuth()
   const [urlImg, setUrlImg] = useState<string>("")
-  const [fileName, setFileName] = useState<string>("")
   const [user, setUser] = useState<string>("")
   const { sideMenu, setSideMenu, state } = useStore()
   
@@ -26,8 +25,7 @@ const NavUsers = () => {
   useEffect(() => {
     getUser((res: any) => {
       setUser(res.username)
-      setFileName(res.image)
-      setUrlImg(`${process.env.NEXT_PUBLIC_API_URL}/upload/images/${res.image}`)
+      setUrlImg(res.image)
     })
   })
 
@@ -54,7 +52,7 @@ const NavUsers = () => {
         <div className="relative ml-2 overflow-hidden bg-cover rounded-full w-7 h-7 bg-secondary">
           <button>
           <Link href="/dashboard/profile">
-          <Image src={fileName !== null ? urlImg : "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
+          <Image src={urlImg || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
           </Link>
           </button>
         </div>

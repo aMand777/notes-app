@@ -10,7 +10,6 @@ const SideMenu = ({ menu }: any) => {
   const { Logout } = useAuth()
   const { sideMenu, setSideMenu } = useStore()
   const [urlImg, setUrlImg] = useState<string>("")
-  const [fileName, setFileName] = useState<string>("")
   const [user, setUser] = useState<string>("")
 
   const handleSideMenu = () => {
@@ -25,11 +24,9 @@ const SideMenu = ({ menu }: any) => {
   useEffect(() => {
     getUser((res: any) => {
       setUser(res.username)
-      setFileName(res.image)
-      setUrlImg(`${process.env.NEXT_PUBLIC_API_URL}/upload/images/${res.image}`)
+      setUrlImg(res.image)
     })
   })
-
 
   const handleClickProfileImg = () => {
     router.push("/dashboard/profile")
@@ -45,7 +42,7 @@ const SideMenu = ({ menu }: any) => {
       <div className="relative w-11/12 mx-auto border-2 border-white rounded-lg h-5/6 mt-14">
           <div className="relative w-20 h-20 mx-auto mt-3 overflow-hidden bg-cover border-2 border-white rounded-full bg-primary">
             <button onClick={handleClickProfileImg} >
-            <Image src={fileName !== null ? urlImg : "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
+            <Image src={urlImg || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
             </button>
           </div>
           <p className="mx-auto mt-3 text-sm italic text-center cursor-pointer w-fit cursor-pointe hover:font-semibold">{user}</p>

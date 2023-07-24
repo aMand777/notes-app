@@ -57,7 +57,6 @@ const UsersProvider = ({ children }: any) => {
 
     uploadImage(file, (res: any) => {
       if (res.status === "success") {
-        console.log(res)
         usersDispatch({ type: "SET_DEFAULT"})
         dispatch({type: "SET_ALERT"})
         dispatch({type: "SET_MESSAGE", payload: `${res.status}`})
@@ -66,7 +65,6 @@ const UsersProvider = ({ children }: any) => {
         dispatch({type: "SET_ALERT"})
         dispatch({type: "SET_MESSAGE", payload: "Ukuran file maksimal 100kb"})
       } else if (res.status === 401 || token === undefined) {
-        console.log(res)
         dispatch({type: "SET_ALERT_SESSION"})
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else {

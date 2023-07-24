@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import SampleNotes from "./components/templates/SampleNotes"
-import Button from "./components/elements/Button"
 import InputLabel from "./components/elements/InputLabel"
 import Nav from "./components/elements/Nav"
 import NavLogo from "./components/fragments/NavLogo"
@@ -50,12 +49,12 @@ const Home = () => {
           <div className="w-9/12 mx-auto">
             <InputLabel inputRef={focusInput} placeholder="catatan hari ini.." onChange={handleChange} onKeyDown={handleKeyDown} className="mb-2 text-xs italic" />
           </div>
-          <div className="flex flex-row justify-between mx-5 md:mx-10">
+          <div className="flex flex-row w-9/12 mx-auto justify-between">
             <Link href="/login">
-              <Button>Log in</Button>
+              <p className="text-[10px] md:text-xs text-blue-500 italic hover:scale-110 hover:font-bold hover:text-blue-600 ">Login</p>
             </Link>
             <Link href="/signup">
-              <Button>Sign up</Button>
+            <p className="text-[10px] md:text-xs text-blue-500 italic hover:scale-110 hover:font-bold hover:text-blue-600">Signup</p>
             </Link>
           </div>
         </div>

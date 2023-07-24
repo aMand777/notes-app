@@ -1,15 +1,5 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '5000',
-        pathname: '/upload/**',
-      },
-    ],
+    domains: [process.env.NEXT_PUBLIC_API_URL_IMG],
   },
 }
-
-module.exports = nextConfig

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Loading from "../fragments/Loading"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -40,11 +39,11 @@ const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
             <h3 className="my-2 text-lg font-bold text-center">{title}</h3>
             <p className="px-3 pt-2 pb-5 text-sm break-words whitespace-pre-line text-start">{body.substring(0, 150)}</p>
           </div>
-          <div className="flex flex-row justify-between mt-5 rounded-lg bg-secondary">
-            <span className="text-base italic font-medium">
+          <div className="flex flex-row justify-between mt-5 rounded-lg bg-secondary text-[9px] ">
+            <span className="italic font-medium">
               #<span className="self-center text-xs">{tags}</span>
             </span>
-            <span className="text-[11px] text-slate-700 italic font-medium self-center">{createdAt === updatedAt ? `createdAt  ${create}` : `updatedAt ${update}`}</span>
+            <span className="text-slate-700 italic font-medium self-center">{createdAt === updatedAt ? `createdAt  ${create}` : `updatedAt ${update}`}</span>
           </div>
       </div>
       </button>

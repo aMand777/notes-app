@@ -20,7 +20,6 @@ const NotesProvider = ({ children }: any) => {
         dispatch({type: "SET_DEFAULT"})
       } else if (res.status === 401 || token === undefined) {
         dispatch({type: "SET_DEFAULT"})
-        console.log(res)
         dispatch({type: "SET_ALERT_SESSION"})
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else {
@@ -37,11 +36,9 @@ const NotesProvider = ({ children }: any) => {
         data(res.data.note)
       dispatch({type: "SET_DEFAULT"})
     } else if (res.status === 401 || token === undefined) {
-      console.log(res)
       dispatch({type: "SET_ALERT_SESSION"})
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === 404) {
-      console.log(res)
       dispatch({type: "SET_ALERT"})
       dispatch({type: "SET_MESSAGE", payload: res.data.message})
       dispatch({type: "SET_ROUTES", payload: "/notes"})
@@ -56,17 +53,14 @@ const NotesProvider = ({ children }: any) => {
     deleteNote(id, (res: any) => {
       dispatch({type: "SET_LOADING"})
       if (res.status === "success") {
-        console.log(res)
         dispatch({ type: "SET_DEFAULT" })
         dispatch({type: "SET_MESSAGE", payload: res.message})
         dispatch({ type: "SET_ALERT" })
         dispatch({type: "SET_ROUTES", payload: "/notes"})
     } else if (res.status === 401 || token === undefined) {
-      console.log(res)
       dispatch({type: "SET_ALERT_SESSION"})
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
-      console.log(res)
       dispatch({type: "SET_ALERT"})
       dispatch({type: "SET_MESSAGE", payload: res.data.message})
       dispatch({type: "SET_ROUTES", payload: "/notes"})
@@ -80,16 +74,13 @@ const NotesProvider = ({ children }: any) => {
 
     insertNote(data, (res: any) => {
       if (res.status === "success") {
-        console.log(res)
         dispatch({type: "SET_MESSAGE", payload: res.message})
         dispatch({ type: "SET_ALERT" })
         dispatch({type: "SET_ROUTES", payload: "/notes"})
     } else if (res.status === 401 || token === undefined) {
-      console.log(res)
       dispatch({type: "SET_ALERT_SESSION"})
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
-      console.log(res)
       dispatch({type: "SET_ALERT"})
       dispatch({type: "SET_MESSAGE", payload: res.data.message})
       dispatch({type: "SET_ROUTES", payload: "/notes"})
@@ -103,16 +94,13 @@ const NotesProvider = ({ children }: any) => {
 
     putNoteById(id, data, (res: any) => {
       if (res.status === "success") {
-        console.log(res)
         dispatch({type: "SET_MESSAGE", payload: res.message})
         dispatch({ type: "SET_ALERT" })
         dispatch({type: "SET_ROUTES", payload: "/notes"})
     } else if (res.status === 401 || token === undefined) {
-      console.log(res)
       dispatch({type: "SET_ALERT_SESSION"})
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
-      console.log(res)
       dispatch({type: "SET_ALERT"})
       dispatch({type: "SET_MESSAGE", payload: res.data.message})
       dispatch({type: "SET_ROUTES", payload: "/notes"})

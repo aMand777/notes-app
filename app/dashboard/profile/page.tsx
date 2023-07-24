@@ -9,7 +9,6 @@ const ProfilePage = () => {
   const [user, setUser] = useState<any>(null)
   const [image, setImage] = useState<any>(null)
   const [currentImg, setCurrentImg] = useState<string>("")
-  const [current, setCurrent] = useState<string>("")
   const {UploadImageUser} = useUsers()
 
   const handleChange = (event: any) => {
@@ -26,14 +25,13 @@ const ProfilePage = () => {
   useEffect(() => {
     getUser((res: any) => {
       setUser(res.username)
-      setCurrent(res.image)
-      setCurrentImg(`${process.env.NEXT_PUBLIC_API_URL}/upload/images/${res.image}`)
+      setCurrentImg(res.image)
     })
   }, [])
 
   return (
     <>
-      <UploadImage handleChange={handleChange} handleSubmit={handleSubmit} username={user} current={current} currentImg={currentImg} previewImage={previewImage} />
+      <UploadImage handleChange={handleChange} handleSubmit={handleSubmit} username={user} currentImg={currentImg} previewImage={previewImage} />
     </>
   )
 }

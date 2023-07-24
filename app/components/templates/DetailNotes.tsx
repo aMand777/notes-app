@@ -42,15 +42,15 @@ const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
     <>
       <Loading validation={loading} />
       <div className="w-10/12 mx-auto my-5 sm:w-7/12 md:w-1/2 lg:w-1/2 h-fit">
-          <div className="w-full max-w-sm px-4 mx-auto border border-b-0 shadow-2xl bg-secondary rounded-t-lg">
+          <div className="w-full max-w-sm px-4 mx-auto border border-b-0 shadow-2xl bg-secondary rounded-t-lg min-h-[176px]">
             <h3 className="my-2 text-xl font-bold text-center">{title}</h3>
             <p className="pt-3 pb-10 mx-1 text-sm italic break-words whitespace-break-spaces">{body}</p>
           </div>
           <div className="flex flex-row justify-between w-full max-w-sm mx-auto border border-t-0 bg-secondary shadow-2xl rounded-b-lg">
-            <p className="pl-2 text-xs italic">
-              #<span className="self-center text-sm">{tags}</span>
+            <p className="pl-2 italic text-xs">
+              #<span className="self-center">{tags}</span>
             </p>
-            <p className="self-center pr-2 text-xs italic text-slate-700">{createdAt === updatedAt ? `createdAt  ${create}` : `last_ updated ${update}`}</p>
+            <p className="self-center pr-2 italic text-slate-700 text-[9px]">{createdAt === updatedAt ? `createdAt  ${create}` : `last_ updated ${update}`}</p>
           </div>
         <div className="flex flex-row justify-between w-full max-w-sm mx-auto mt-3">
           <Button onClick={handleDelete}>Delete</Button>

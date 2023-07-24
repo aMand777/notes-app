@@ -40,11 +40,11 @@ const Alert = ({ validation, message, routes }: Props) => {
             Ok
           </Button>
         </div>
-        <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex">
-          <span className="text-base font-thin italic">
-            #<span className="text-xs self-center font-thin">urgent</span>
+        <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex text-[9px] ">
+          <span className="font-thin italic">
+            #<span className="self-center font-thin">urgent</span>
           </span>
-          <span className="text-[11px] text-slate-700 italic self-center font-thin">{create}</span>
+          <span className="text-slate-700 italic self-center font-thin">{create}</span>
         </div>
       </div>
       </div>
