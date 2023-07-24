@@ -50,12 +50,10 @@ const AuthProvider = ({ children }: any) => {
 
     login(user, (res: any) => {
       if (res.status === "success") {
-        router.replace("/dashboard")
+        router.push("/dashboard")
         authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
       } else if (res.status === 400 || res.status === 401) {
         authDispatch({ type: AuthActions.SET_LOGIN_FAILED, payload: res.data.message })
-      } else {
-        console.log(res)
       }
     })
   }
@@ -69,8 +67,6 @@ const AuthProvider = ({ children }: any) => {
         dispatch({ type: "SET_UPDATE_SESSION_SUCCESS" })
       } else if (res.status === 400) {
         dispatch({ type: "SET_UPDATE_SESSION_FAILED" })
-      } else {
-        console.log(res)
       }
     })
   }
@@ -80,7 +76,7 @@ const AuthProvider = ({ children }: any) => {
 
     logout(() => {
         authDispatch({ type: AuthActions.SET_LOGOUT })
-        router.replace("/login")
+        router.push("/login")
     })
   }
 
