@@ -54,8 +54,9 @@ const AuthProvider = ({ children }: any) => {
         authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
       } else if (res.status === 400 || res.status === 401) {
         authDispatch({ type: AuthActions.SET_LOGIN_FAILED, payload: res.data.message })
+      } else {
+        console.log(res)
       }
-      console.log(res)
     })
   }
 
@@ -77,10 +78,9 @@ const AuthProvider = ({ children }: any) => {
   const Logout = () => {
     authDispatch({ type: AuthActions.SET_LOADING })
 
-    logout((res: any) => {
+    logout(() => {
         authDispatch({ type: AuthActions.SET_LOGOUT })
         router.replace("/login")
-      console.log(res)
     })
   }
 
