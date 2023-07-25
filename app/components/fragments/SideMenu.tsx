@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import {useStore} from "../../context/store"
 import {useAuth} from "../../context/auth"
+import {useStore} from "../../context/store"
 import {getUser} from "../../services/users-service"
 import { useRouter } from "next/navigation"
 

@@ -13,8 +13,7 @@ const Nav = ({ children }: {children: React.ReactNode}) => {
       {children}
       </nav>
       <SideMenu menu={sideMenu} />
-      <Alert validation={ state.alert } routes={ state.routes } message={state.message} />
-      <ConfirmAlert validation={state.confirmAlert} message={state.message}/>
+      <ConfirmAlert validation={state.confirmAlert} />
     </>
   );
 };

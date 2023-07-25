@@ -20,7 +20,7 @@ const AlertReducer = (state: any, action: any) => {
     case "SET_CONFIRM_ALERT":
       return { ...state, confirmAlert: true, };
     case "SET_CONFIRM":
-      return { ...state, confirm: true, };
+      return { ...state, confirm: true, confirmAlert: false, };
     case "SET_LOADING":
       return { ...state, loading: true, };
     case "SET_ROUTES":

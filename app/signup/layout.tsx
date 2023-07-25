@@ -1,4 +1,4 @@
-import Nav from "../components/elements/Nav"
+import NavHome from "../components/elements/NavHome"
 import NavLogo from "../components/fragments/NavLogo"
 import NavBrand from "../components/fragments/NavBrand"
 
@@ -10,10 +10,10 @@ export const metadata = {
 const LayoutSignup = ({ children }: any) => {
   return (
     <>
-      <Nav>
+      <NavHome>
         <NavLogo />
         <NavBrand link="/" />
-      </Nav>
+      </NavHome>
       {children}
     </>
   );

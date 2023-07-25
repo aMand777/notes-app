@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import {useStore} from "../../context/store"
 import { useAuth } from "../../context/auth"
+import { useUsers } from "../../context/users"
 import SessionAlert from "../fragments/SessionAlert"
 import Loading from "../fragments/Loading"
 import { getUser } from "../../services/users-service"
@@ -10,9 +11,10 @@ import Link from "next/link"
 
 const NavUsers = () => {
   const {Logout, authState} = useAuth()
+  const {usersState} = useUsers()
+  const { sideMenu, setSideMenu, state } = useStore()
   const [urlImg, setUrlImg] = useState<string>("")
   const [user, setUser] = useState<string>("")
-  const { sideMenu, setSideMenu, state } = useStore()
   
   const handleSideMenu = () => {
     setSideMenu(!sideMenu)
@@ -27,7 +29,7 @@ const NavUsers = () => {
       setUser(res.username)
       setUrlImg(res.image)
     })
-  })
+  }, [usersState.loading])
 
   const time = new Date().getHours();
   const greeting = time < 12 ? 'pagi' : time < 15 ? 'siang' : time < 18 ? 'sore' : 'malam';
@@ -50,11 +52,9 @@ const NavUsers = () => {
         </p>
         </div>
         <div className="relative ml-2 overflow-hidden bg-cover rounded-full w-7 h-7 bg-secondary">
-          <button>
           <Link href="/dashboard/profile">
-          <Image src={urlImg || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
+            <Image src={urlImg || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
           </Link>
-          </button>
         </div>
       <span className="mx-1 lg:w-1/5">
         <button onClick={handleLogout}>

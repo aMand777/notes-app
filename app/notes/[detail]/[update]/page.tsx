@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import UpdateNote from "../../../components/templates/UpdateNote"
 import { useNotes } from "../../../context/notes"
+import Alert from "../../../components/fragments/Alert"
 
 
 const UpdatePage = ({ params }: { params: { update: string } }) => {
@@ -12,7 +13,7 @@ const UpdatePage = ({ params }: { params: { update: string } }) => {
   const tags = searchParams.get("tags")
   const id = params.update
   
-  const { EditNoteById } = useNotes()
+  const { EditNoteById, notesState } = useNotes()
   const [note, setNote] = useState<any>({title, body, tags: [tags] });
 
   const handleChange = (event: any) => {
@@ -31,6 +32,7 @@ const UpdatePage = ({ params }: { params: { update: string } }) => {
 
   return (
     <>
+    <Alert validation={notesState.alert} routes={notesState.route} message={notesState.message} />
       <form onSubmit={handleSubmit}>
         <UpdateNote id={id} title={note.title} body={note.body} tags={note.tags} handleChange={handleChange} handleSelect={handleSelect} />
       </form>

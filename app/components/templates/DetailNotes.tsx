@@ -34,10 +34,10 @@ const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
   };
     
   const handleUpdate = () => {
-    router.push(`/notes/update/${id}?&title=${title}&body=${body}&tags=${tags}`)
     setLoading(true)
+    router.push(`/notes/update/${id}?&title=${title}&body=${body}&tags=${tags}`)
   };
-  
+
   return (
     <>
       <Loading validation={loading} />

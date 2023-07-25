@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation";
 import Button from "../elements/Button"
 import { useStore } from "../../context/store"
+import { useNotes } from "../../context/notes"
+import { useUsers } from "../../context/users"
 
 type Props = {
   validation: boolean;
@@ -11,9 +13,13 @@ type Props = {
 const Alert = ({ validation, message, routes }: Props) => {
   const router = useRouter()
   const { dispatch } = useStore()
+  const { notesDispatch } = useNotes()
+  const { usersDispatch } = useUsers()
 
   const handleRoute = () => {
     dispatch({ type: "SET_DEFAULT" })
+    notesDispatch({ type: "SET_DEFAULT" })
+    usersDispatch({ type: "SET_DEFAULT" })
     router.replace(routes)
   }
 

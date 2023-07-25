@@ -5,34 +5,24 @@ import { useRouter } from "next/navigation"
 import { useStore } from "./store"
 
 const InitialAuthState = {
-  message: "",
   loading: false,
+  message: ""
 };
-
-const AuthActions = {
-  SET_LOADING: 'SET_LOADING',
-  SET_LOGIN_SUCCESS: 'SET_LOGIN_SUCCESS',
-  SET_LOGIN_FAILED: 'SET_LOGIN_FAILED',
-  SET_LOGOUT: 'SET_LOGOUT',
-};
-
 
 const AuthReducer = (state: any, action: any) => {
   switch (action.type) {
-    case AuthActions.SET_LOADING:
+    case "SET_LOADING":
       return { ...state, loading: true };
-    case AuthActions.SET_LOGIN_SUCCESS:
-      return {
-        loading: false,
-      };
-    case AuthActions.SET_LOGIN_FAILED:
+    case "SET_LOGIN_SUCCESS":
+      return { ...state, loading: false };
+    case "SET_LOGIN_FAILED":
       return {
         ...state,
         loading: false,
         message: action.payload,
       };
       default:
-      case AuthActions.SET_LOGOUT:
+      case "SET_LOGOUT":
         return InitialAuthState;
   }
 };
@@ -46,21 +36,21 @@ const AuthProvider = ({ children }: any) => {
   const [authState, authDispatch] = useReducer(AuthReducer, InitialAuthState);
 
   const Login = (user: {email : string, password: string}) => {
-    authDispatch({ type: AuthActions.SET_LOADING })
+    authDispatch({ type: "SET_LOADING" })
 
     login(user, (res: any) => {
       if (res.status === "success") {
+        authDispatch({ type: "SET_LOGIN_SUCCESS" })
         router.push("/dashboard")
-        authDispatch({ type: AuthActions.SET_LOGIN_SUCCESS })
       } else if (res.status === 400 || res.status === 401) {
-        authDispatch({ type: AuthActions.SET_LOGIN_FAILED, payload: res.data.message })
+        authDispatch({ type: "SET_LOGIN_FAILED", payload: res.data.message })
       }
     })
   }
 
   const UpdateSession = () => {
 
-    dispatch({ type: AuthActions.SET_LOADING })
+    dispatch({ type: "SET_LOADING" })
     updateSession((res: any) => {
       if (res.status === "success") {
         router.push("/dashboard")
@@ -72,10 +62,10 @@ const AuthProvider = ({ children }: any) => {
   }
 
   const Logout = () => {
-    authDispatch({ type: AuthActions.SET_LOADING })
+    authDispatch({ type: "SET_LOADING" })
 
     logout(() => {
-        authDispatch({ type: AuthActions.SET_LOGOUT })
+        authDispatch({ type: "SET_LOGOUT" })
         router.push("/login")
     })
   }

@@ -6,6 +6,8 @@ import Cookies from "js-cookie"
 
 const InitialUsersState = {
   loading: false,
+  alert: false,
+  route: "",
   message: ""
 };
 
@@ -13,12 +15,35 @@ const UsersReducer = (state: any, action: any) => {
   switch (action.type) {
     case "SET_LOADING" :
       return { ...state, loading: true };
-    case "SET_INSERT_USERS_FAILED" :
+    case "SET_INSERT_USER_SUCCESS" :
+      return {
+        ...state,
+        alert: true,
+        loading: false,
+        route: "/login",
+        message: action.payload,
+      };
+    case "SET_INSERT_USER_FAILED" :
       return {
         ...state,
         loading: false,
         message: action.payload,
       };
+      case "SET_UPLOAD_IMG_USER_SUCCESS" :
+        return {
+          ...state,
+          alert: true,
+          loading: false,
+          route: "/dashboard",
+          message: action.payload,
+      };
+      case "SET_UPLOAD_IMG_USER_FAILED" :
+        return {
+          ...state,
+          loading: false,
+          alert: true,
+          message: action.payload,
+        };
     case "SET_DEFAULT" :
       return InitialUsersState;
     default:
@@ -38,15 +63,12 @@ const UsersProvider = ({ children }: any) => {
 
     insertUser(user, (res: any) => {
       if (res.status === "success") {
-        usersDispatch({ type: "SET_DEFAULT"})
-        dispatch({type: "SET_ALERT"})
-        dispatch({type: "SET_MESSAGE", payload: `${res.status}, please login`})
-        dispatch({type: "SET_ROUTES", payload: "/login"})
+        usersDispatch({type: "SET_INSERT_USER_SUCCESS", payload: `${res.status}, please login`})
       } else if (res.status === 400 || res.status === 401) {
-        usersDispatch({ type: "SET_INSERT_USERS_FAILED", payload: res.data.message })
+        usersDispatch({ type: "SET_INSERT_USER_FAILED", payload: res.data.message })
       } else {
         usersDispatch({ type: "SET_DEFAULT"})
-        console.log(res)
+        console.log(res.status)
       }
     })
   }
@@ -57,18 +79,14 @@ const UsersProvider = ({ children }: any) => {
 
     uploadImage(file, (res: any) => {
       if (res.status === "success") {
-        usersDispatch({ type: "SET_DEFAULT"})
-        dispatch({type: "SET_ALERT"})
-        dispatch({type: "SET_MESSAGE", payload: `${res.status}`})
-        dispatch({type: "SET_ROUTES", payload: "/dashboard"})
+        usersDispatch({ type: "SET_UPLOAD_IMG_USER_SUCCESS", payload: res.status})
       } else if (res.status === 413) {
-        dispatch({type: "SET_ALERT"})
-        dispatch({type: "SET_MESSAGE", payload: "Ukuran file maksimal 100kb"})
+        usersDispatch({type: "SET_UPLOAD_IMG_USER_FAILED", payload: "Ukuran file maksimal 100kb"})
       } else if (res.status === 401 || token === undefined) {
         dispatch({type: "SET_ALERT_SESSION"})
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else {
-        console.log(res)
+        console.log(res.status)
       }
     })
   }

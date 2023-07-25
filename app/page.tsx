@@ -4,14 +4,16 @@ import Link from "next/link"
 import Image from "next/image"
 import SampleNotes from "./components/templates/SampleNotes"
 import InputLabel from "./components/elements/InputLabel"
-import Nav from "./components/elements/Nav"
+import NavHome from "./components/elements/NavHome"
 import NavLogo from "./components/fragments/NavLogo"
 import NavBrand from "./components/fragments/NavBrand"
-import { useStore } from "./context/store"
+import Alert from "./components/fragments/Alert"
 
 const Home = () => {
-  const { dispatch } = useStore()
 
+  const [message, setMessage] = useState<string>('');
+  const [route, setRoute] = useState<string>('');
+  const [alert, setAlert] = useState<boolean>(false);
   const [sampleNotes, setSampleNotes] = useState<string>('');
   const focusInput = useRef<HTMLInputElement>(null);
 
@@ -26,20 +28,20 @@ const Home = () => {
   };
 
   const handleKeyDown = (event: any) => {
-
     if (event.key === 'Enter') {
-      dispatch({type: "SET_ALERT"})
-      dispatch({type: "SET_ROUTES", payload: "/login"})
-      dispatch({type: "SET_MESSAGE", payload: "Please Login"})
+      setAlert(true)
+      setMessage("Please login")
+      setRoute("/login")
     }
   };
 
   return (
     <>
-      <Nav>
+      <NavHome>
         <NavLogo />
         <NavBrand link="/" />
-      </Nav>
+      </NavHome>
+      < Alert validation={alert} routes={route} message={message} />
       <div className="w-9/12 py-2 mx-auto mt-3 bg-green-100 rounded-lg sm:w-1/3 max-w-sm sm:mt-5">
         <div className="text-sm sm:text-md italic font-semibold text-center">
           <h1>Welcome to NotesApp</h1>

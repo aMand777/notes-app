@@ -3,10 +3,11 @@ import { useState } from "react"
 import CreateNote from "../../components/templates/CreateNotes"
 import { useNotes } from "@/app/context/notes"
 import {useStore} from "@/app/context/store"
+import Alert from "../../components/fragments/Alert"
 
 const CreatePage = () => {
   const {dispatch} = useStore()
-  const {InsertNote} = useNotes()
+  const {InsertNote, notesState} = useNotes()
   const [note, setNote] = useState({
     title: "",
     body: "",
@@ -34,6 +35,7 @@ const CreatePage = () => {
 
   return (
     <>
+      <Alert validation={notesState.alert} routes={notesState.route} message={notesState.message} />
       <form onSubmit={handleSubmit}>
         <CreateNote handleChange={handleChange} handleSelect={handleSelect} />
       </form>

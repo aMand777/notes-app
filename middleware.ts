@@ -5,9 +5,9 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const login = request.cookies.get("accessToken")
 
-  if  (!login) {
+  if (!login) {
     return NextResponse.redirect(new URL('/login', request.url))
-  }
+  } 
 }
 
 // See "Matching Paths" below to learn more

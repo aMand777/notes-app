@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import LoginForm from "../components/templates/LoginForm"
 import Loading from "../components/fragments/Loading"
 import { useState } from "react"
