@@ -12,9 +12,9 @@ const SampleNotes = ({ body, className }: any) => {
   return (
     <>
       <div className={`w-9/12 h-fit sm:w-1/3 max-w-sm mx-auto bg-secondary rounded-xl my-auto mt-2 ${className}`}>
-        <div className="p-1 h-28 md:h-40 my-auto text-sm">
-          <h3 className="font-bold  mb-2 text-center italic">Catatan hari ini</h3>
-          <p className="break-words italic p-1 text-start font-thin mx-3">{body}</p>
+        <div className="p-1 h-36 md:h-40 my-auto text-sm">
+          <h3 className="font-bold mb-2 text-center italic">Catatan hari ini</h3>
+          <p className="break-words italic p-1 text-start font-thin mx-3">{body.substring(0, 100)}</p>
         </div>
         <div className="bg-secondary rounded-lg flex flex-row justify-between">
           <span className="text-base italic font-medium">
