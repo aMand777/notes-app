@@ -5,10 +5,9 @@ const NotesLoading = ({ validation, loop }: any) => {
     
     return (
       <>
-        {/* <div className="flex flex-row flex-wrap justify-between w-9/12 mx-auto md:w-7/12 lg:w-10/12"> */}
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mx-auto container">
           {loadingItems.map((_, index) => (
-          <div key={index} className="p-4 mx-auto my-5 border rounded-lg shadow-lg lg:mx-5 bg-secondary w-80 h-fit border-primary">
+          <div key={index} className="p-4 mx-auto my-5 border rounded-lg shadow-lg lg:mx-5 bg-secondary w-64 sm:w-80 h-fit border-primary">
             <div className="flex space-x-4 animate-pulse">
               <div className="flex-1 py-1 space-y-6">
                 <div className="w-1/2 h-2 m-auto rounded bg-slate-500"></div>
