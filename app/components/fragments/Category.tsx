@@ -4,7 +4,7 @@ const Category = ({ ...rest }: any) => {
       <label htmlFor="tags" className="italic text-xs mr-1">
         Priority :
       </label>
-      <select name="tags" id="tags" {...rest} className="rounded-lg bg-primary italic text-xs">
+      <select name="tags" id="tags" {...rest} className="rounded-lg bg-primary italic text-md">
         <option value="low">low</option>
         <option value="medium">medium</option>
         <option value="high">high</option>
