@@ -2,7 +2,7 @@ import InputLabel from "../elements/InputLabel"
 import Button from "../elements/Button"
 import Image from "next/image"
 
-type Props = {
+type PropsUploadImage = {
   handleSubmit: (event: any) => void,
   handleChange: (event: any) => void,
   currentImg: string,
@@ -10,8 +10,9 @@ type Props = {
   previewImage: any,
 }
 
-const UploadImage = ({ handleSubmit, handleChange, username, currentImg, previewImage }: Props) => {
-
+const UploadImage = (props: PropsUploadImage) => {
+  const { handleSubmit, handleChange, username, currentImg, previewImage } = props
+  
   return (
     <div className="w-8/12 max-w-sm p-3 mx-auto rounded-lg sm:w-1/2 sm:h-1/2 outline-double outline-primary bg-secondary">
       <p className="text-xs italic font-semibold text-center lg:text-sm">{username}</p>

@@ -1,6 +1,4 @@
-"use client"
-
-const Checkbox = ({ children, className, ...rest }: any) => {
+const Checkbox = ({children, className, ...rest}: any) => {
     
   return (
       <div className={`${className}`}>

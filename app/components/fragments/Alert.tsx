@@ -4,13 +4,15 @@ import { useStore } from "../../context/store"
 import { useNotes } from "../../context/notes"
 import { useUsers } from "../../context/users"
 
-type Props = {
+type PropsAlert = {
   validation: boolean;
   message: string;
   routes: string;
 }
 
-const Alert = ({ validation, message, routes }: Props) => {
+const Alert = (props: PropsAlert) => {
+  const { validation, message, routes } = props
+
   const router = useRouter()
   const { dispatch } = useStore()
   const { notesDispatch } = useNotes()

@@ -1,11 +1,7 @@
 import Button from "../elements/Button"
 import { useStore } from "../../context/store"
 
-type Props = {
-  validation: boolean;
-}
-
-const ConfirmAlert = ({validation}: Props) => {
+const ConfirmAlert = ({validation}: {validation: boolean}) => {
   const { dispatch } = useStore()
 
   const handleConfirm = () => {

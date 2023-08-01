@@ -1,7 +1,6 @@
 "use client"
 import SideMenu from "../fragments/SideMenu";
 import { useStore } from "../../context/store"
-import Alert from "../fragments/Alert"
 import ConfirmAlert from "../fragments/ConfirmAlert"
 
 const Nav = ({ children }: {children: React.ReactNode}) => {

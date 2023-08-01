@@ -6,7 +6,7 @@ import Link from "next/link"
 import Button from "../elements/Button"
 import { useRef, useEffect } from "react"
 
-const CreateNotes = ({ id, title, body, tags, handleChange, handleSelect }: any) => {
+const UpdateNotes = ({ id, title, body, tags, handleChange, handleSelect }: any) => {
   const focusInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ const CreateNotes = ({ id, title, body, tags, handleChange, handleSelect }: any)
   );
 };
 
-export default CreateNotes;
+export default UpdateNotes;

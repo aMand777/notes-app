@@ -1,8 +1,4 @@
-type Props = {
-    validation: boolean,
-}
-
-const NotesEmpty = ({ validation }: Props) => {
+const NotesEmpty = ({ validation }: {validation: boolean}) => {
     
         return (
             <div className="w-screen">

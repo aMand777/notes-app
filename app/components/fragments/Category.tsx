@@ -1,4 +1,5 @@
 const Category = ({ ...rest }: any) => {
+  
   return (
     <div>
       <label htmlFor="tags" className="italic text-xs mr-1">

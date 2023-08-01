@@ -5,7 +5,7 @@ import {useStore} from "../../context/store"
 import {getUser} from "../../services/users-service"
 import { useRouter } from "next/navigation"
 
-const SideMenu = ({ menu }: any) => {
+const SideMenu = ({ menu }: {menu: boolean}) => {
   const router = useRouter()
   const { Logout } = useAuth()
   const { sideMenu, setSideMenu } = useStore()
@@ -36,7 +36,7 @@ const SideMenu = ({ menu }: any) => {
   return (
     <>
     <button onClick={handleSideMenu}>
-      <div className={`w-screen h-screen fixed z-30 top-0 bg-black opacity-50 cursor-default ${menu ? "block" : "hidden"}`}></div>
+      <div className={`w-screen h-screen fixed z-30 inset-0 bg-black opacity-50 cursor-default ${menu ? "block" : "hidden"}`}></div>
     </button>
     <div className={`sm:hidden w-8/12 h-screen bg-secondary fixed top-10 right-0 z-40 ${menu ? "block transition duration-1000 opacity-100" : "transition duration-1000 translate-x-full opacity-0"}`}>
       <div className="relative w-11/12 mx-auto border-2 border-white rounded-lg h-5/6 my-5">

@@ -1,6 +1,5 @@
-"use client"
-
-const InputLabel = ({ children, htmlFor, className, inputRef, errorMessage, ...rest }: any) => {
+const InputLabel = (props: any) => {
+  const { children, htmlFor, className, inputRef, errorMessage, ...rest } = props
 
   return (
     <>

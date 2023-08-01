@@ -1,10 +1,6 @@
 import Link from "next/link"
 
-type Props = {
-  link: string;
-}
-
-const NavBrand = ({ link }: Props) => {
+const NavBrand = ({ link }: {link: string}) => {
   return (
     <div className="w-1/3">
       <h1 className="font-bold italic text-2xl w-fit mx-auto">

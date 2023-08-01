@@ -1,12 +1,14 @@
 import Button from "../elements/Button";
 import { useAuth } from "../../context/auth";
 
-type Props = {
+type PropsSessionAlert = {
   validation: boolean;
   message: string;
 }
 
-const SessionAlert = ({ validation, message }: Props) => {
+const SessionAlert = (props: PropsSessionAlert) => {
+  const {validation, message} = props
+  
   const {UpdateSession, Logout} = useAuth()
   
   const date = new Date().toLocaleString('id-ID', {

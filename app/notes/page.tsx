@@ -7,7 +7,7 @@ import NotesEmpty from "../components/fragments/NotesEmpty"
 import NotesLoading from "../components/templates/NotesLoading"
 
 const NotesPage = () => {
-  const [notes, setNotes] = useState<any[]>([])
+  const [notes, setNotes] = useState([])
   const { GetNotes, notesState } = useNotes()
   
   useEffect(() => {

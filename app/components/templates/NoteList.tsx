@@ -2,7 +2,15 @@ import Loading from "../fragments/Loading"
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
+type PropsNoteList = {
+  id: string;
+  title: string;
+  body: string;
+  tags: string;
+  createdAt: string;
+  updatedAt: string;
+}
+const NoteList = ({ id, title, body, tags, createdAt, updatedAt }: PropsNoteList) => {
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const create = new Date(createdAt).toLocaleString('id-ID', {

@@ -1,4 +1,4 @@
-const Loading = ({ validation }: any) => {
+const Loading = ({ validation }: {validation: boolean}) => {
 
   return (
     <>
