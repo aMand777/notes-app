@@ -85,6 +85,7 @@ const NotesProvider = ({ children }: any) => {
         dispatch({type: "SET_ALERT_SESSION"})
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else {
+        notesDispatch({type: "SET_DEFAULT"})
         console.log(res.status)
       }
     })
@@ -102,8 +103,9 @@ const NotesProvider = ({ children }: any) => {
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === 404) {
         notesDispatch({type: "SET_DEFAULT"})
-    } else {
-      console.log(res.status)
+      } else {
+        notesDispatch({type: "SET_DEFAULT"})
+        console.log(res.status)
     }
     })
   }
@@ -119,8 +121,9 @@ const NotesProvider = ({ children }: any) => {
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
         notesDispatch({type: "SET_DELETE_NOTE_FAILED", payload: res.data.message})
-    } else {
-      console.log(res.status)
+      } else {
+        notesDispatch({type: "SET_DEFAULT"})
+        console.log(res.status)
     }
     })
   }
@@ -136,8 +139,9 @@ const NotesProvider = ({ children }: any) => {
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
         dispatch({type: "SET_INSERT_NOTE_FAILED", payload: res.message})
-    } else {
-      console.log(res.status)
+      } else {
+        notesDispatch({type: "SET_DEFAULT"})
+        console.log(res.status)
     }
     })
   }
@@ -153,8 +157,9 @@ const NotesProvider = ({ children }: any) => {
       dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
       } else if (res.status === "fail") {
         dispatch({type: "SET_UPDATE_NOTE_FAILED", payload: res.message})
-    } else {
-      console.log(res.status)
+      } else {
+        notesDispatch({type: "SET_DEFAULT"})
+        console.log(res.status)
     }
     })
   }

@@ -85,8 +85,11 @@ const UsersProvider = ({ children }: any) => {
       } else if (res.status === 401 || token === undefined) {
         dispatch({type: "SET_ALERT_SESSION"})
         dispatch({type: "SET_MESSAGE", payload: "Sesi kamu telah habis, tetap login ?"})
-      } else {
+      } else if (res.status === 400) {
+        usersDispatch({type: "SET_UPLOAD_IMG_USER_FAILED", payload: "Format file tidak valid"})
         console.log(res.status)
+      } else {
+        usersDispatch({type: "SET_UPLOAD_IMG_USER_FAILED", payload: "Mohon Maaf Server Kami Sedang Mengalami Gangguan"})
       }
     })
   }
