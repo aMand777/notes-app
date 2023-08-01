@@ -38,7 +38,7 @@ const NavUsers = () => {
     <>
     <Loading validation={authState.loading} />
     <SessionAlert validation={ state.alertSession } message={ state.message } />
-    <div className="flex justify-end w-1/3 sm:hidden">
+    <div className="flex justify-end w-1/3 sm:hidden z-50">
     <button onClick={handleSideMenu} className="mr-5">
       <Image src="/img/menu-icon.png" alt="menu-icon" width="20" height="20" className={`cursor-pointer md:hidden ${sideMenu ? "hidden" : "block"}`} />
       <Image src="/img/close-icon.png" alt="close-icon" width="15" height="15" className={`cursor-pointer md:hidden ${sideMenu ? "block" : "hidden"}`} />
