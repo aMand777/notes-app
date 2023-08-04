@@ -45,7 +45,7 @@ const SideMenu = ({ menu }: {menu: boolean}) => {
             <Image src={urlImg || "/img/pic-icon.svg"} alt="pic-icon" fill={true} />
             </button>
           </div>
-          <p className="mx-auto mt-3 text-sm italic text-center cursor-pointer w-fit cursor-pointe hover:font-semibold">{user}</p>
+          <p className="mx-auto mt-3 text-sm italic text-center cursor-default w-fit">{user}</p>
           <button onClick={handleLogout}>
             <p className="absolute mx-auto text-xs italic text-center text-blue-500 cursor-pointer bottom-2 inset-x-1/3 w-fit hover:text-blue-600 hover:font-semibold">Logout</p>
           </button>
