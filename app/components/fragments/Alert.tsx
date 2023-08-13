@@ -44,9 +44,7 @@ const Alert = (props: PropsAlert) => {
           <p className="text-xs break-words italic p-1 text-center my-5">{message}</p>
         </div>
         <div className='flex flex-row justify-end mr-3 mb-2'>
-          <Button onClick={handleRoute}>
-            Ok
-          </Button>
+          <button onClick={handleRoute}><Button>Ok</Button></button>
         </div>
         <div className="bg-secondary rounded-lg flex-row justify-between hidden sm:flex text-[9px] ">
           <span className="font-thin italic">

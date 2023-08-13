@@ -72,7 +72,9 @@ const SignupForm = ({ isError, ...rest }: any) => {
         <Link href="/login">
           <span className="text-sm italic font-semibold text-blue-500 cursor-pointer hover:text-blue-800">Login</span>
         </Link>
-        <Button className="flex justify-end">Signup</Button>
+        <div className="flex justify-end">
+        <Button>Signup</Button>
+        </div>
       </div>
     </div>
   );

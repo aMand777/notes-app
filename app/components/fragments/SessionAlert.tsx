@@ -41,9 +41,9 @@ const SessionAlert = (props: PropsSessionAlert) => {
             <button onClick={handleLogout}>
               <p className="text-xs italic text-blue-500 hover:text-blue-600 hover:font-semibold active:cursor-wait">logout</p>
             </button>
-          <Button onClick={handleUpdateSession}>
-            Ok
-          </Button>
+            <button onClick={handleUpdateSession}>
+            <Button>Ok</Button>
+            </button>
         </div>
         <div className="flex-row justify-between hidden rounded-lg bg-secondary sm:flex">
           <span className="text-base italic font-thin">

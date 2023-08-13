@@ -31,12 +31,12 @@ const ConfirmAlert = ({validation}: {validation: boolean}) => {
           <p className="p-1 my-5 text-xs italic text-center break-words">Apakah kamu yakin ?</p>
         </div>
         <div className='flex flex-row justify-between mx-3 sm:mb-0 mb-2'>
-          <Button onClick={handleBack}>
-            Back
-          </Button>
-          <Button onClick={handleConfirm}>
-            Yes
-          </Button>
+          <button onClick={handleBack}>
+            <Button>Back</Button>
+          </button>
+          <button onClick={handleConfirm}>
+            <Button>Yes</Button>
+          </button>
         </div>
         <div className="flex-row justify-between hidden rounded-lg bg-secondary sm:flex">
           <span className="text-base italic font-thin">

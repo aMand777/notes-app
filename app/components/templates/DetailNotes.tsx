@@ -53,8 +53,12 @@ const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
             <p className="self-center pr-2 italic text-slate-700 text-[9px]">{createdAt === updatedAt ? `createdAt  ${create}` : `last_ updated ${update}`}</p>
           </div>
         <div className="flex flex-row justify-between w-full max-w-sm mx-auto mt-3">
-          <Button onClick={handleDelete}>Delete</Button>
-          <Button onClick={handleUpdate}>Update</Button>
+          <button onClick={handleDelete}>
+          <Button>Delete</Button>
+          </button>
+          <button onClick={handleUpdate}>
+          <Button>Update</Button>
+          </button>
         </div>
       </div>
     </>
