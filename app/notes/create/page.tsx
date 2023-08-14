@@ -37,7 +37,7 @@ const CreatePage = () => {
     <>
       <Alert validation={notesState.alert} routes={notesState.route} message={notesState.message} />
       <form onSubmit={handleSubmit}>
-        <CreateNote handleChange={handleChange} handleSelect={handleSelect} />
+        <CreateNote title={note.title} body={note.body} tags={note.tags[0]} handleChange={handleChange} handleSelect={handleSelect} />
       </form>
     </>
   );

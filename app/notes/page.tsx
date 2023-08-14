@@ -22,11 +22,11 @@ const NotesPage = () => {
       {notes.length > 0 ? (
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 mx-auto container">
       {notes.map((note: any) => (
-        <NoteList key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags} createdAt={note.createdAt} updatedAt={note.updatedAt} />
+        <NoteList key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags[0]} createdAt={note.createdAt} updatedAt={note.updatedAt} />
         ))}
       </div>
       ) : 
-      <NotesLoading validation={notesState.loading} loop={9} /> 
+      <NotesLoading validation={notesState.loading} loop={9} />
       }
       <CreateIcon />
     </>

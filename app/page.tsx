@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import SampleNotes from "./components/templates/SampleNotes"
-import InputLabel from "./components/elements/InputLabel"
+import InputSampleNote from "./components/elements/InputSampleNote"
 import NavHome from "./components/elements/NavHome"
 import NavLogo from "./components/fragments/NavLogo"
 import NavBrand from "./components/fragments/NavBrand"
@@ -49,7 +49,7 @@ const Home = () => {
             <Image src="/img/logo.ico" alt="logo" fill={true} />
           </div>
           <div className="w-9/12 mx-auto">
-            <InputLabel inputRef={focusInput} placeholder="catatan hari ini.." onChange={handleChange} onKeyDown={handleKeyDown} className="mb-2 text-xs italic" />
+            <InputSampleNote inputRef={focusInput} placeholder="catatan hari ini.." onChange={handleChange} onKeyDown={handleKeyDown} className="mb-2 text-xs italic" />
           </div>
           <div className="flex flex-row w-9/12 mx-auto justify-between">
             <Link href="/login">

@@ -28,7 +28,7 @@ const DetailNotePage = ({ params }: { params: { detail: string } }) => {
     <>
     <Alert validation={notesState.alert} routes={notesState.route} message={notesState.message} />
       {note !== undefined ?
-      (<DetailNotes key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags} createdAt={note.createdAt} updatedAt={note.updatedAt} />)
+      (<DetailNotes key={note.id} id={note.id} title={note.title} body={note.body} tags={note.tags[0]} createdAt={note.createdAt} updatedAt={note.updatedAt} />)
       : (
         <LoadingDetail />
       )}

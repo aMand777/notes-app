@@ -1,4 +1,4 @@
-import InputLabel from "../elements/InputLabel"
+import InputFile from "../elements/InputFile"
 import Button from "../elements/Button"
 import Image from "next/image"
 
@@ -21,7 +21,7 @@ const UploadImage = (props: PropsUploadImage) => {
       </div>
       <p className="mt-3 text-xs italic text-center">Max 100kb</p>
       <form onSubmit={handleSubmit}>
-        <InputLabel type="file" onChange={handleChange} className="outline-primary outline-1" />
+        <InputFile type="file" onChange={handleChange} className="outline-primary outline-1" />
         <Button>Upload</Button>
       </form>
     </div>

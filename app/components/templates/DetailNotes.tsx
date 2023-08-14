@@ -4,7 +4,16 @@ import { useStore } from "../../context/store"
 import { useState } from "react"
 import Loading from "../fragments/Loading"
 
-const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: any) => {
+type PropsDetailNotes = {
+  id: string;
+  title: string;
+  body: string;
+  tags: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: PropsDetailNotes) => {
   const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
   const {dispatch} = useStore()

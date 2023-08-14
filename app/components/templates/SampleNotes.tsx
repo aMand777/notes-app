@@ -1,4 +1,9 @@
-const SampleNotes = ({ body, className }: any) => {
+type PropsSampleNotes = {
+  body: string;
+  className: string;
+}
+
+const SampleNotes = ({ body, className }: PropsSampleNotes) => {
   const create = new Date().toLocaleString('id-ID', {
     day: '2-digit',
     month: 'short',

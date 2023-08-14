@@ -1,4 +1,9 @@
-const NotesLoading = ({ validation, loop }: any) => {
+type PropsNotesLoading = {
+  validation: boolean;
+  loop: number;
+}
+
+const NotesLoading = ({ validation, loop }: PropsNotesLoading) => {
 
   const loadingItems = new Array(loop).fill(null);
   if (validation) {

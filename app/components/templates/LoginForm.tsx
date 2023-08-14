@@ -5,7 +5,12 @@ import Checkbox from "../elements/Checkbox"
 import Button from "../elements/Button"
 import Link from "next/link"
 
-const LoginForm = ({isError, ...rest }: any) => {
+type PropsLoginForm = {
+  isError: string;
+  onChange: (event: any) => void;
+}
+
+const LoginForm = ({isError, onChange, ...rest }: PropsLoginForm) => {
   const focusInput = useRef<HTMLInputElement>(null);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -23,23 +28,30 @@ const LoginForm = ({isError, ...rest }: any) => {
     <div className="w-10/12 pb-5 mx-auto mt-5">
       <InputLabel
         {...rest}
+        onChange={onChange}
         errorMessage={isError && isError.includes('email') ? isError : ''}
         inputRef={focusInput}
         htmlFor="email"
         id="email"
         type="email"
         name="email"
+        minLength={3}
+        required
         placeholder="input your email"
         className={`bg-slate-100 ${isError && isError.includes('email') ? 'border' : 'border-0'}`}>
         Email
       </InputLabel>
       <InputLabel
         {...rest}
+        onChange={onChange}
+        inputRef={null}
         errorMessage={isError && isError.includes('password') ? isError : ''}
         htmlFor="password"
         id="password"
         type={!isChecked ? 'password' : 'text'}
         name="password"
+        minLength={6}
+        required
         placeholder="input your password"
         className={`bg-slate-100 ${isError && isError.includes('password') ? 'border' : 'border-0'}`}>
         Password

@@ -1,4 +1,9 @@
-const Category = ({ ...rest }: any) => {
+type PropsCategory = {
+  value: string;
+  onChange: (event: any) => void;
+}
+
+const Category = ({ ...rest }: PropsCategory) => {
   
   return (
     <div>
