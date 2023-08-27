@@ -66,7 +66,7 @@ const AuthProvider = ({ children }: any) => {
 
     logout(() => {
         authDispatch({ type: "SET_LOGOUT" })
-        router.push("/login")
+        router.replace("/login")
     })
   }
 
