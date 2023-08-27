@@ -8,7 +8,7 @@ const Navbar = () => {
     <>
     <Nav>
       <NavLogo />
-      <NavBrand />
+      <NavBrand link="/dashboard" />
       <NavUsers />
     </Nav>
     </>

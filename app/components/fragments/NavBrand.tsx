@@ -1,11 +1,11 @@
 "use client"
 import { useRouter } from "next/navigation"
 
-const NavBrand = () => {
+const NavBrand = ({link}: {link: string}) => {
   const router = useRouter()
 
   const handleClick = () => {
-    router.replace('/dashboard')
+    router.replace(link)
   }
 
   return (
