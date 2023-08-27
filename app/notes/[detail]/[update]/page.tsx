@@ -16,16 +16,16 @@ const UpdatePage = ({ params }: { params: { update: string } }) => {
   const { EditNoteById, notesState } = useNotes()
   const [note, setNote] = useState<any>({title, body, tags: [tags] });
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNote({ ...note, [name]: value });
   };
 
-  const handleSelect = (event: any) => {
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setNote({ ...note, tags: [event.target.value] });
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     EditNoteById(id, note)
   };

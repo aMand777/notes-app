@@ -63,7 +63,7 @@ const DetailNotes = ({ id, title, body, tags, createdAt, updatedAt }: PropsDetai
           </div>
         <div className="flex flex-row justify-between w-full max-w-sm mx-auto mt-3">
           <button onClick={handleDelete}>
-          <Button>Delete</Button>
+          <Button className='bg-red-500 hover:bg-red-600'>Delete</Button>
           </button>
           <button onClick={handleUpdate}>
           <Button>Update</Button>

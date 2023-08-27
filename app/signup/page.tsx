@@ -14,12 +14,12 @@ const SignupPage = () => {
     confirmPassword: "",
   });
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
   };
   
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
     InsertUser(user)
   }

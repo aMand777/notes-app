@@ -10,8 +10,8 @@ type PropsCreateNotes = {
   title: string;
   body: string;
   tags: string;
-  handleChange: (event: any) => void;
-  handleSelect: (event: any) => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const CreateNotes = ({ title, body, tags, handleChange, handleSelect }: PropsCreateNotes) => {

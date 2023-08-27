@@ -7,13 +7,13 @@ import Link from "next/link"
 
 type PropsSignupForm = {
   isError: string;
-  onChange: (event: any) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SignupForm = ({ isError, onChange, ...rest }: PropsSignupForm) => {
   const focusInput = useRef<HTMLInputElement>(null);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const handleCheckboxChange = (event: any) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
   };
 

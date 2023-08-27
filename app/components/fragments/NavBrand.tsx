@@ -1,10 +1,19 @@
-import Link from "next/link"
+"use client"
+import { useRouter } from "next/navigation"
 
-const NavBrand = ({ link }: {link: string}) => {
+const NavBrand = () => {
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.replace('/dashboard')
+  }
+
   return (
     <div className="w-1/3">
       <h1 className="font-bold italic text-2xl w-fit mx-auto">
-        <Link href={link}>NotesApp</Link>
+      <button onClick={handleClick}>
+        NotesApp
+      </button>
       </h1>
     </div>
   )

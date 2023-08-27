@@ -7,14 +7,14 @@ import Link from "next/link"
 
 type PropsLoginForm = {
   isError: string;
-  onChange: (event: any) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const LoginForm = ({isError, onChange, ...rest }: PropsLoginForm) => {
   const focusInput = useRef<HTMLInputElement>(null);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const handleCheckboxChange = (event: any) => {
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
   };
 
